@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" role="img" aria-label="黄昏的天空与云">
+<defs><linearGradient id="w1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6d86b8"/><stop offset=".55" stop-color="#c9b3c6"/><stop offset="1" stop-color="#f2c9a8"/></linearGradient></defs>
+<rect width="400" height="220" fill="url(#w1)"/>
+<circle cx="300" cy="165" r="26" fill="#ffe0bd" opacity=".85"/>
+<g fill="#fff" opacity=".35">
+<ellipse cx="90" cy="70" rx="70" ry="16"/><ellipse cx="150" cy="55" rx="45" ry="11"/>
+<ellipse cx="290" cy="95" rx="80" ry="14"/><ellipse cx="60" cy="120" rx="55" ry="10"/>
+<ellipse cx="330" cy="45" rx="50" ry="10"/>
+</g>
+<rect y="196" width="400" height="24" fill="#3d4a63" opacity=".5"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" role="img" aria-label="数据网络节点图">
+<rect width="400" height="220" fill="#eef1f6"/>
+<g stroke="#b7c4d8" stroke-width="1">
+<path d="M40 60 L120 40 L200 90 L120 40 M200 90 L280 50 L360 90 M200 90 L150 160 L60 140 L40 60 M150 160 L250 170 L280 50 M250 170 L360 90 M60 140 L120 40"/>
+</g>
+<g fill="#1f5ae0">
+<circle cx="40" cy="60" r="4"/><circle cx="120" cy="40" r="6"/><circle cx="200" cy="90" r="8"/>
+<circle cx="280" cy="50" r="5"/><circle cx="360" cy="90" r="4"/><circle cx="150" cy="160" r="6"/>
+<circle cx="60" cy="140" r="4"/><circle cx="250" cy="170" r="5"/>
+</g>
+<g fill="#7fa8f0"><circle cx="90" cy="100" r="3"/><circle cx="320" cy="140" r="3"/><circle cx="215" cy="30" r="3"/></g>
+</svg>

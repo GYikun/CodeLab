@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CodeLab · Leiden University — Understanding Human Behaviour in Everyday Life</title>
+<meta name="description" content="CodeLab uses smartphones and behavioural science to discover how people think, feel and act in the real world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%231f5ae0'/></svg>">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="CodeLab, Leiden University">
+      <span class="brand-name"><strong>Code</strong>Lab</span>
+      <span class="brand-sub">Leiden University</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a href="#top" class="is-active">Homepage</a>
+      <a href="#methods">Methods &amp; Discoveries</a>
+      <a href="#questions">Research Questions</a>
+      <a href="#partners">Partners</a>
+      <a href="#team">Team</a>
+      <a href="#resources">Resources</a>
+      <a href="#join" class="btn btn-primary btn-sm nav-cta">Join a Study</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+
+    <div class="hero-copy">
+      <h1 class="hero-title reveal">
+        Understanding<br>
+        Human Behaviour<br>
+        <em>in Everyday Life</em>
+      </h1>
+      <p class="hero-lede reveal" data-delay="1">
+        We use smartphones and behavioural science
+        to discover how people think, feel and act
+        in the real world.
+      </p>
+      <div class="hero-actions reveal" data-delay="2">
+        <a href="#questions" class="btn btn-primary">Explore Research <span class="arrow" aria-hidden="true">→</span></a>
+        <a href="#join" class="btn btn-ghost">Join Our Studies</a>
+      </div>
+      <a href="#timeline" class="scroll-hint reveal" data-delay="3">
+        <svg viewBox="0 0 16 26" width="16" height="26" aria-hidden="true">
+          <rect x="1" y="1" width="14" height="24" rx="7" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <circle class="scroll-dot" cx="8" cy="8" r="2" fill="currentColor"/>
+        </svg>
+        <span>Scroll to explore</span>
+      </a>
+    </div>
+
+    <!-- ---------- 英雄区插画（全部手绘 SVG） ---------- -->
+    <div class="hero-art">
+      <svg viewBox="0 0 900 500" class="scene" role="img"
+           aria-label="An illustrated landscape: people walking, cycling, running, sitting and talking, connected by a line of behavioural data points, with the Leiden skyline in the distance.">
+        <defs>
+          <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FDE9C9"/><stop offset="1" stop-color="#FDF4E6"/>
+          </linearGradient>
+          <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#EAF1FE"/><stop offset="1" stop-color="#FFFFFF"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 背景：太阳、云 -->
+        <circle cx="742" cy="150" r="86" fill="url(#sun)"/>
+        <g fill="#EEF3FC">
+          <ellipse cx="430" cy="120" rx="52" ry="14"/>
+          <ellipse cx="470" cy="106" rx="30" ry="9"/>
+          <ellipse cx="250" cy="150" rx="40" ry="11"/>
+        </g>
+
+        <!-- 莱顿天际线：教堂、市政厅、风车 -->
+        <g class="skyline" stroke="#C9D8F0" stroke-width="1.6" fill="#F4F8FE">
+          <rect x="628" y="185" width="34" height="115"/>
+          <rect x="666" y="205" width="26" height="95"/>
+          <rect x="696" y="150" width="30" height="150"/>
+          <path d="M711 150 l0 -40 l-15 40"/>
+          <rect x="730" y="196" width="40" height="104"/>
+          <path d="M750 196 l0 -46 l-20 46 M750 150 l20 46"/>
+          <rect x="744" y="120" width="12" height="34"/>
+          <path d="M750 96 l-8 24 h16 z" fill="#DCE7FA"/>
+          <rect x="776" y="215" width="24" height="85"/>
+          <rect x="804" y="180" width="30" height="120"/>
+          <path d="M819 180 l0 -34 l-15 34"/>
+          <!-- windmill -->
+          <path d="M862 300 l10 -70 h22 l10 70 z"/>
+          <circle cx="883" cy="226" r="5" fill="#DCE7FA" stroke="none"/>
+          <g class="mill" style="transform-origin:883px 226px">
+            <path d="M883 226 l0 -52 M883 226 l52 0 M883 226 l0 52 M883 226 l-52 0"/>
+          </g>
+          <!-- trees -->
+          <path d="M614 300 v-30 M614 270 a16 20 0 1 1 0.1 0" fill="#E7F1E9"/>
+          <path d="M840 300 v-26 M840 274 a14 18 0 1 1 0.1 0" fill="#E7F1E9"/>
+        </g>
+
+        <!-- 左侧远景城市 -->
+        <g class="skyline" stroke="#DCE7FA" stroke-width="1.4" fill="#F7FAFF">
+          <rect x="30" y="392" width="24" height="60"/>
+          <rect x="58" y="372" width="18" height="80"/>
+          <rect x="80" y="404" width="26" height="48"/>
+          <rect x="620" y="400" width="22" height="52"/>
+          <rect x="646" y="382" width="16" height="70"/>
+        </g>
+
+        <!-- 水面与帆船 -->
+        <g stroke="#C9D8F0" stroke-width="1.6" fill="none">
+          <path d="M300 220 h120 M320 232 h80"/>
+        </g>
+        <g class="boat">
+          <path d="M356 210 l0 -80 l46 80 z" fill="#EAF1FE" stroke="#5C8AE6" stroke-width="1.8"/>
+          <path d="M350 130 l-1 80" stroke="#2A4B8D" stroke-width="2"/>
+          <path d="M336 212 h72 l-10 14 h-52 z" fill="#FFFFFF" stroke="#2A4B8D" stroke-width="1.8"/>
+        </g>
+
+        <!-- 桥 -->
+        <path d="M420 250 q60 -46 122 0" fill="none" stroke="#2A4B8D" stroke-width="2"/>
+        <path d="M420 250 v16 M542 250 v16" stroke="#2A4B8D" stroke-width="2"/>
+        <g stroke="#C9D8F0" stroke-width="1.4">
+          <path d="M440 240 v14 M462 232 v20 M482 229 v23 M502 232 v20 M522 240 v14"/>
+        </g>
+
+        <!-- 行为数据主路径（动画描边） -->
+        <path id="tracePath" class="trace"
+              d="M120 470 C 190 470, 200 400, 150 380 C 90 356, 70 300, 140 282
+                 C 210 264, 300 268, 380 250 C 450 234, 500 220, 560 240
+                 C 630 262, 640 340, 560 360 C 470 382, 400 360, 340 380
+                 C 270 404, 300 470, 380 470 L 660 470
+                 C 740 470, 760 420, 830 400 C 880 386, 900 372, 900 360"
+              fill="none" stroke="#1F5AE0" stroke-width="2" stroke-linecap="round"/>
+        <path id="tracePath2" class="trace trace-2"
+              d="M560 240 C 640 210, 720 220, 790 260 C 840 288, 880 300, 900 296"
+              fill="none" stroke="#1F5AE0" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- 数据点 -->
+        <g class="nodes">
+          <circle cx="150" cy="380" r="5" fill="#1F5AE0"/>
+          <circle cx="140" cy="282" r="5" fill="#F5B33C"/>
+          <circle cx="220" cy="272" r="5" fill="#4CAF7D"/>
+          <circle cx="380" cy="250" r="5" fill="#5C8AE6"/>
+          <circle cx="560" cy="240" r="5" fill="#1F5AE0"/>
+          <circle cx="600" cy="330" r="5" fill="#4CAF7D"/>
+          <circle cx="560" cy="360" r="5" fill="#5C8AE6"/>
+          <circle cx="340" cy="380" r="5" fill="#1F5AE0"/>
+          <circle cx="380" cy="470" r="5" fill="#5C8AE6"/>
+          <circle cx="790" cy="260" r="5" fill="#1F5AE0"/>
+          <circle cx="830" cy="400" r="5" fill="#5C8AE6"/>
+          <circle cx="898" cy="296" r="5" fill="#1F5AE0"/>
+        </g>
+
+        <!-- 中心手机：屏幕上的行为曲线 -->
+        <g class="phone-group">
+          <circle cx="470" cy="330" r="52" fill="#FBE3E6"/>
+          <path d="M420 300 l14 -22" stroke="#2A4B8D" stroke-width="2" fill="none"/>
+          <g transform="rotate(-12 470 340)">
+            <rect x="438" y="288" width="64" height="106" rx="10" fill="#2A3550"/>
+            <rect x="443" y="296" width="54" height="90" rx="5" fill="url(#screen)"/>
+            <path d="M450 372 L466 350 L476 358 L492 320" fill="none" stroke="#1F5AE0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="492" cy="320" r="3" fill="#1F5AE0"/>
+            <rect x="462" y="291" width="16" height="2.4" rx="1.2" fill="#8792AB"/>
+          </g>
+        </g>
+
+        <!-- 人物：桥上行走 -->
+        <g class="figure" stroke="#2A3550" stroke-width="2.2" fill="none" stroke-linecap="round">
+          <circle cx="486" cy="152" r="8" fill="#2A3550"/>
+          <path d="M486 160 v26" stroke="#2A3550" stroke-width="2.6"/>
+          <path d="M486 168 l-12 12 M486 168 l13 9"/>
+          <path d="M486 186 l-11 20 M486 186 l12 20"/>
+          <path d="M475 206 l-8 3 M498 206 l9 3"/>
+          <rect x="472" y="162" width="12" height="16" rx="3" fill="#4CAF7D" stroke="#2A3550" stroke-width="1.6"/>
+        </g>
+
+        <!-- 人物：骑车 -->
+        <g class="figure">
+          <g stroke="#2A3550" stroke-width="2.2" fill="none">
+            <circle cx="556" cy="330" r="24"/><circle cx="616" cy="330" r="24"/>
+            <path d="M556 330 L582 306 L616 330 M582 306 L594 306 M566 316 l14 -10"/>
+            <path d="M582 330 l0 -24"/>
+          </g>
+          <g stroke="#2A3550" stroke-width="2.2" fill="none" stroke-linecap="round">
+            <circle cx="592" cy="268" r="8" fill="#2A3550"/>
+            <path d="M592 276 l-6 22" stroke-width="2.6"/>
+            <path d="M588 284 l-16 20" />
+            <path d="M586 298 l-6 12 M586 298 l10 8"/>
+          </g>
+          <path d="M580 276 l16 4 l-6 22 l-14 -4 z" fill="#F5B33C" stroke="#2A3550" stroke-width="1.6"/>
+        </g>
+
+        <!-- 人物：跑步 -->
+        <g class="figure" stroke="#2A3550" stroke-width="2.2" fill="none" stroke-linecap="round">
+          <circle cx="120" cy="352" r="8" fill="#2A3550"/>
+          <path d="M120 360 l-4 24"/>
+          <path d="M118 368 l-16 8 M118 368 l16 -2"/>
+          <path d="M116 384 l-12 18 l-8 6 M116 384 l14 14 l2 12"/>
+          <path d="M112 360 l12 3 l-4 22 l-12 -3 z" fill="#C9B6F0" stroke="#2A3550" stroke-width="1.6"/>
+        </g>
+
+        <!-- 人物：长椅上看手机 -->
+        <g class="figure">
+          <g stroke="#2A3550" stroke-width="2.2" fill="none" stroke-linecap="round">
+            <circle cx="270" cy="392" r="8" fill="#2A3550"/>
+            <path d="M270 400 v22"/>
+            <path d="M270 408 l14 8 M270 408 l-2 14"/>
+            <path d="M268 422 l18 4 M286 426 l2 20"/>
+            <rect x="282" y="410" width="8" height="12" rx="2" fill="#EAF1FE"/>
+          </g>
+          <path d="M262 400 h16 v24 h-18 z" fill="#4CAF7D" stroke="#2A3550" stroke-width="1.6"/>
+          <g stroke="#2A3550" stroke-width="2" fill="none">
+            <path d="M250 424 h48 M254 424 v22 M294 424 v22 M250 414 h6"/>
+          </g>
+        </g>
+
+        <!-- 有轨电车 -->
+        <g class="tram">
+          <rect x="420" y="416" width="140" height="46" rx="8" fill="#FFFFFF" stroke="#2A3550" stroke-width="2"/>
+          <path d="M420 432 h140" stroke="#2A3550" stroke-width="1.4"/>
+          <rect x="430" y="422" width="26" height="16" rx="2" fill="#EAF1FE" stroke="#2A3550" stroke-width="1.4"/>
+          <rect x="464" y="422" width="26" height="16" rx="2" fill="#EAF1FE" stroke="#2A3550" stroke-width="1.4"/>
+          <rect x="498" y="422" width="26" height="16" rx="2" fill="#EAF1FE" stroke="#2A3550" stroke-width="1.4"/>
+          <rect x="420" y="442" width="140" height="10" fill="#1F5AE0" opacity=".85"/>
+          <circle cx="446" cy="464" r="6" fill="#2A3550"/><circle cx="536" cy="464" r="6" fill="#2A3550"/>
+        </g>
+
+        <!-- 咖啡桌上的两个人 -->
+        <g class="figure">
+          <g stroke="#2A3550" stroke-width="2" fill="none">
+            <path d="M676 424 h84 M690 424 v26 M746 424 v26"/>
+          </g>
+          <!-- 左 -->
+          <g stroke="#2A3550" stroke-width="2.2" fill="none" stroke-linecap="round">
+            <circle cx="656" cy="368" r="8" fill="#2A3550"/>
+            <path d="M656 376 v20"/>
+            <path d="M656 384 l16 8"/>
+            <path d="M650 414 l-2 26 M664 414 l2 26"/>
+          </g>
+          <path d="M646 378 h20 l4 36 h-28 z" fill="#4CAF7D" stroke="#2A3550" stroke-width="1.6"/>
+          <!-- 右 -->
+          <g stroke="#2A3550" stroke-width="2.2" fill="none" stroke-linecap="round">
+            <circle cx="782" cy="366" r="8" fill="#2A3550"/>
+            <path d="M782 374 v20"/>
+            <path d="M782 384 l-16 8"/>
+            <path d="M776 414 l-2 26 M790 414 l2 26"/>
+          </g>
+          <path d="M772 376 h20 l4 38 h-28 z" fill="#F5B33C" stroke="#2A3550" stroke-width="1.6"/>
+          <!-- 椅子 + 杯子 -->
+          <g stroke="#2A3550" stroke-width="2" fill="none">
+            <path d="M630 396 v46 M636 414 h24 M636 396 v46"/>
+            <path d="M808 394 v48 M784 414 h24 M802 394 v48"/>
+          </g>
+          <rect x="700" y="412" width="12" height="10" rx="2" fill="#fff" stroke="#2A3550" stroke-width="1.6"/>
+          <rect x="726" y="412" width="12" height="10" rx="2" fill="#fff" stroke="#2A3550" stroke-width="1.6"/>
+        </g>
+
+        <!-- 地面辅助线 -->
+        <path d="M0 470 h900" stroke="#EAF1FE" stroke-width="2"/>
+      </svg>
+
+      <p class="hero-quote reveal" data-delay="2">
+        Every behaviour<br>leaves a trace.<br>Every trace tells<br>a story.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="timeline-band" id="timeline">
+  <div class="wrap">
+    <div class="timeline-head">
+      <h2 class="timeline-title">A short history of<br>understanding behaviour</h2>
+
+      <div class="timeline-scroller">
+        <ol class="timeline">
+          <li class="tl-item reveal">
+            <span class="tl-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M8 2.5v19"/><path d="M11 8h6M11 12h6M11 16h4"/></svg>
+            </span>
+            <span class="tl-era">1900s</span>
+            <span class="tl-text">Paper diaries<br>and observation</span>
+          </li>
+          <li class="tl-item reveal" data-delay="1">
+            <span class="tl-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 2h6v3H9z"/><path d="M8 10h.01M8 14h.01M8 18h.01M11 10h6M11 14h6M11 18h4"/></svg>
+            </span>
+            <span class="tl-era">1960s</span>
+            <span class="tl-text">Questionnaires<br>and surveys</span>
+          </li>
+          <li class="tl-item reveal" data-delay="2">
+            <span class="tl-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2v6L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 8V2z"/><path d="M8.5 2h7"/><path d="M7 15h10"/></svg>
+            </span>
+            <span class="tl-era">1980s</span>
+            <span class="tl-text">Laboratory<br>experiments</span>
+          </li>
+          <li class="tl-item reveal" data-delay="3">
+            <span class="tl-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/><circle cx="12" cy="10" r="3"/><path d="M9 10h6M12 7v6"/></svg>
+            </span>
+            <span class="tl-era">2000s</span>
+            <span class="tl-text">The internet era</span>
+          </li>
+          <li class="tl-item reveal" data-delay="4">
+            <span class="tl-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10.5 5h3"/><path d="M12 9.5l2.5 2.5L12 14.5 9.5 12z"/></svg>
+            </span>
+            <span class="tl-era">2010s</span>
+            <span class="tl-text">Smartphones<br>change everything</span>
+          </li>
+          <li class="tl-item tl-now reveal" data-delay="5">
+            <span class="tl-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="8" r="2.5"/><circle cx="17" cy="8" r="2.5"/><circle cx="12" cy="7" r="3"/><path d="M2.5 20v-2a4 4 0 0 1 4-4h1"/><path d="M21.5 20v-2a4 4 0 0 0-4-4h-1"/><path d="M7 20v-2.5A5 5 0 0 1 12 13a5 5 0 0 1 5 4.5V20"/></svg>
+            </span>
+            <span class="tl-era">Today</span>
+            <span class="tl-text">We study life<br>as it happens</span>
+          </li>
+          <li class="tl-item reveal" data-delay="6">
+            <span class="tl-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 21v-3a5.5 5.5 0 0 0 2.5-9.5A5.5 5.5 0 0 0 7 5.5 4.5 4.5 0 0 0 5.5 14H8v7"/><path d="M11 11.5h3M12.5 10v3"/></svg>
+            </span>
+            <span class="tl-era">Future</span>
+            <span class="tl-text">Towards digital<br>twins of behaviour</span>
+          </li>
+        </ol>
+        <div class="tl-axis" aria-hidden="true">
+          <span class="tl-line"></span>
+          <span class="tl-dot" style="--i:0"></span><span class="tl-dot" style="--i:1"></span>
+          <span class="tl-dot" style="--i:2"></span><span class="tl-dot" style="--i:3"></span>
+          <span class="tl-dot tl-dot-green" style="--i:4"></span><span class="tl-dot tl-dot-amber" style="--i:5"></span>
+          <span class="tl-dot" style="--i:6"></span>
+        </div>
+      </div>
+
+      <a class="tl-next" href="#questions" aria-label="Next">→</a>
+    </div>
+
+    <a class="tl-link" href="#methods">Why real-world behaviour matters <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- ============ BIG QUESTIONS ============ -->
+<section class="questions" id="questions">
+  <div class="wrap q-grid">
+    <div class="q-intro">
+      <h2 class="q-title">The big questions</h2>
+      <p class="q-lede">We ask fundamental questions about behaviour in the real world.</p>
+      <a href="#questions" class="btn btn-primary">See all research questions <span class="arrow">→</span></a>
+    </div>
+
+    <div class="q-cards">
+      <article class="card reveal">
+        <div class="card-media">
+          <img src="assets/img/q-society.svg" alt="" loading="lazy" width="400" height="220">
+          <span class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+          </span>
+        </div>
+        <h3>How is smartphone behaviour changing society?</h3>
+        <a class="card-link" href="#">Explore <span class="arrow">→</span></a>
+      </article>
+
+      <article class="card reveal" data-delay="1">
+        <div class="card-media">
+          <img src="assets/img/q-aging.svg" alt="" loading="lazy" width="400" height="220">
+          <span class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M12 12l7-4M12 12l-7-4M12 17l6-3M12 17l-6-3"/></svg>
+          </span>
+        </div>
+        <h3>How do we age, and why do people age differently?</h3>
+        <a class="card-link" href="#">Explore <span class="arrow">→</span></a>
+      </article>
+
+      <article class="card reveal" data-delay="2">
+        <div class="card-media">
+          <img src="assets/img/q-wellbeing.svg" alt="" loading="lazy" width="400" height="220">
+          <span class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg>
+          </span>
+        </div>
+        <h3>Can digital behaviour predict mental wellbeing?</h3>
+        <a class="card-link" href="#">Explore <span class="arrow">→</span></a>
+      </article>
+
+      <article class="card reveal" data-delay="3">
+        <div class="card-media">
+          <img src="assets/img/q-ai.svg" alt="" loading="lazy" width="400" height="220">
+          <span class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16"/><path d="M12 6.5a3.5 3.5 0 1 0-3.5 3.5H12"/><path d="M12 6.5A3.5 3.5 0 1 1 15.5 10H12"/><path d="M12 14a3.5 3.5 0 1 0-3.5 3.5"/><path d="M12 14a3.5 3.5 0 1 1 3.5 3.5"/></svg>
+          </span>
+        </div>
+        <h3>Can AI help us understand everyday life?</h3>
+        <a class="card-link" href="#">Explore <span class="arrow">→</span></a>
+      </article>
+
+      <article class="card reveal" data-delay="4">
+        <div class="card-media">
+          <img src="assets/img/q-health.svg" alt="" loading="lazy" width="400" height="220">
+          <span class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M9.3 20V5M14.7 20v-8M20 20V8"/></svg>
+          </span>
+        </div>
+        <h3>How can passive sensing improve healthcare?</h3>
+        <a class="card-link" href="#">Explore <span class="arrow">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 占位区块（供你继续填内容） ============ -->
+<section class="stub" id="methods">
+  <div class="wrap">
+    <h2 class="q-title">Methods &amp; Discoveries</h2>
+    <p class="q-lede">Experience sampling, passive smartphone sensing, and computational modelling — combined to study behaviour where it actually happens.</p>
+  </div>
+</section>
+
+<section class="stub alt" id="partners">
+  <div class="wrap">
+    <h2 class="q-title">Partners</h2>
+    <p class="q-lede">We collaborate with universities, hospitals and public institutions across Europe.</p>
+  </div>
+</section>
+
+<section class="stub" id="team">
+  <div class="wrap">
+    <h2 class="q-title">Team</h2>
+    <p class="q-lede">Psychologists, data scientists and engineers at Leiden University.</p>
+  </div>
+</section>
+
+<section class="stub alt" id="resources">
+  <div class="wrap">
+    <h2 class="q-title">Resources</h2>
+    <p class="q-lede">Open datasets, code and tools for behavioural researchers.</p>
+  </div>
+</section>
+
+<section class="join" id="join">
+  <div class="wrap join-inner">
+    <h2 class="join-title">Take part in a study</h2>
+    <p>Contribute a few minutes a day from your own phone, and help us understand everyday life.</p>
+    <a class="btn btn-primary btn-lg" href="mailto:codelab@fsw.leidenuniv.nl">Join a Study <span class="arrow">→</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <span class="brand-name footer-brand"><strong>Code</strong>Lab</span>
+      <span class="brand-sub">Leiden University</span>
+    </div>
+    <nav aria-label="Footer">
+      <a href="#methods">Methods &amp; Discoveries</a>
+      <a href="#questions">Research Questions</a>
+      <a href="#team">Team</a>
+      <a href="#resources">Resources</a>
+    </nav>
+    <p class="footer-note">© <span id="year">2026</span> CodeLab, Leiden University. Wassenaarseweg 52, Leiden.</p>
+  </div>
+</footer>
+
+<!-- 浮动聊天按钮 -->
+<button class="chat-fab" id="chatFab" aria-label="Ask CodeLab">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-6.5A8 8 0 1 1 21 12z"/></svg>
+  <span>Ask CodeLab</span>
+</button>
+
+<script src="js/main.js"></script>
+</body>
+</html>
