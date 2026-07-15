@@ -27,13 +27,7 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  /* ---------- 3. 英雄区路径按真实长度描边 ---------- */
-  document.querySelectorAll('.scene .trace').forEach(p => {
-    const len = Math.ceil(p.getTotalLength());
-    p.style.setProperty('--len', len);
-  });
-
-  /* ---------- 4. 滚动入场 ---------- */
+  /* ---------- 3. 滚动入场 ---------- */
   const items = document.querySelectorAll('.reveal');
   if (reduced || !('IntersectionObserver' in window)) {
     items.forEach(el => el.classList.add('is-in'));
@@ -49,7 +43,7 @@
     items.forEach(el => io.observe(el));
   }
 
-  /* ---------- 5. 导航高亮当前区块 ---------- */
+  /* ---------- 4. 导航高亮当前区块 ---------- */
   const sections = ['top', 'methods', 'questions', 'partners', 'team', 'resources']
     .map(id => document.getElementById(id)).filter(Boolean);
   const links = new Map();
@@ -68,16 +62,15 @@
     sections.forEach(s => spy.observe(s));
   }
 
-  /* ---------- 6. 年份 ---------- */
+  /* ---------- 5. 年份 ---------- */
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  /* ---------- 7. 聊天按钮（占位，接你的客服/问答系统） ---------- */
+  /* ---------- 6. 聊天按钮 ---------- */
   const fab = document.getElementById('chatFab');
   if (fab) {
     fab.addEventListener('click', () => {
-      // TODO: 在这里打开你的聊天面板或第三方 widget
-      alert('Ask CodeLab — 聊天面板还没接上，可在 js/main.js 第 7 段替换成你的实现。');
+      alert('Ask CodeLab — 聊天面板还没接上，可在 js/main.js 第 6 段替换成你的实现。');
     });
   }
 })();

@@ -3,9 +3,9 @@
    Design tokens
    ========================================================== */
 :root{
-  --ink:#0B2B5C;          /* 深海军蓝，标题 */
-  --ink-soft:#2A3550;     /* 插画线条 */
-  --blue:#1F5AE0;         /* 主蓝 */
+  --ink:#0B2B5C;
+  --ink-soft:#2A3550;
+  --blue:#1F5AE0;
   --blue-700:#123C9E;
   --blue-100:#DCE7FA;
   --blue-050:#EAF1FE;
@@ -83,10 +83,23 @@ a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ==========================================================
-   Hero
+   Hero  — new image-based layout
    ========================================================== */
-.hero{padding:40px 0 20px;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:minmax(320px,.85fr) 1.6fr;gap:40px;align-items:center}
+.hero{
+  padding:48px 0 0;
+  overflow:hidden;
+  /* subtle gradient that transitions into the image area */
+  background:linear-gradient(180deg, #FFFFFF 0%, var(--bg-soft) 100%);
+}
+
+/* Top strip: copy left, nothing right (image sits below) */
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(320px,.85fr) 1fr;
+  gap:48px;
+  align-items:center;
+}
+
 .hero-title{
   font-family:var(--serif);font-weight:700;
   font-size:clamp(38px,4.2vw,62px);line-height:1.08;letter-spacing:-.015em;
@@ -99,38 +112,45 @@ a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
 .scroll-dot{animation:scrollDot 1.8s var(--ease) infinite}
 @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.35}}
 
-.hero-art{position:relative}
-.scene{width:100%;height:auto}
-.scene .trace{stroke-dasharray:var(--len,2600);stroke-dashoffset:var(--len,2600);animation:draw 2.8s var(--ease) .2s forwards}
-.scene .trace-2{animation-delay:1.1s}
-@keyframes draw{to{stroke-dashoffset:0}}
-.scene .nodes circle{opacity:0;animation:pop .5s var(--ease) forwards}
-.scene .nodes circle:nth-child(n){animation-delay:calc(1s + var(--d,0)*0s)}
-.scene .nodes circle:nth-child(1){animation-delay:1.0s}
-.scene .nodes circle:nth-child(2){animation-delay:1.15s}
-.scene .nodes circle:nth-child(3){animation-delay:1.3s}
-.scene .nodes circle:nth-child(4){animation-delay:1.45s}
-.scene .nodes circle:nth-child(5){animation-delay:1.6s}
-.scene .nodes circle:nth-child(6){animation-delay:1.75s}
-.scene .nodes circle:nth-child(7){animation-delay:1.9s}
-.scene .nodes circle:nth-child(8){animation-delay:2.05s}
-.scene .nodes circle:nth-child(9){animation-delay:2.2s}
-.scene .nodes circle:nth-child(10){animation-delay:2.35s}
-.scene .nodes circle:nth-child(11){animation-delay:2.5s}
-.scene .nodes circle:nth-child(12){animation-delay:2.65s}
-@keyframes pop{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
-.scene .mill{animation:spin 16s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.scene .boat{animation:bob 5s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.scene .phone-group{animation:float 6s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.scene .tram{animation:tram 14s linear infinite}
-@keyframes tram{0%{transform:translateX(-30px)}50%{transform:translateX(30px)}100%{transform:translateX(-30px)}}
+/* ---- Hero illustration wrapper ---- */
+.hero-art{
+  position:relative;
+  /* let the right column take its natural height */
+}
 
+/* The image itself — sits in right column at desktop */
+.hero-illustration-wrap{
+  position:relative;
+  /* fade bottom edge into page bg so it blends seamlessly */
+  -webkit-mask-image:linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
+          mask-image:linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
+}
+
+.hero-illustration-wrap img{
+  width:100%;
+  height:auto;
+  /* The original PNG has a white background — mix-mode darkens it
+     so the whites become transparent against the page */
+  mix-blend-mode:multiply;
+  /* gentle entrance */
+  animation:heroFadeIn .9s var(--ease) .1s both;
+}
+
+@keyframes heroFadeIn{
+  from{opacity:0;transform:translateY(12px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+
+/* Full-width panorama band below the hero grid */
+.hero-panorama{
+  position:relative;
+  margin-top:-60px;          /* pull up under the copy */
+  /* Same mask on the panorama version if used instead */
+}
+
+/* Quote that sits over the image on desktop */
 .hero-quote{
-  position:absolute;right:0;top:52%;margin:0;
-  font-family:var(--serif);font-size:20px;line-height:1.5;color:var(--ink);
+  display:none;              /* hidden; we only use it on mobile now */
 }
 
 /* ==========================================================
@@ -239,8 +259,8 @@ a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
 @media (max-width:1180px){
   .wrap{padding:0 28px}
   .q-cards{grid-template-columns:repeat(3,1fr)}
-  .hero-quote{position:static;margin-top:18px}
 }
+
 @media (max-width:960px){
   .nav{
     position:absolute;left:0;right:0;top:100%;
@@ -253,12 +273,23 @@ a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
   .nav a{width:100%;padding:14px 0;border-bottom:1px solid var(--line)}
   .nav .nav-cta{margin-top:16px;border-bottom:0;justify-content:center}
   .nav-toggle{display:block}
+
+  /* On tablet/mobile the grid becomes single column;
+     image goes below copy */
   .hero-grid{grid-template-columns:1fr;gap:24px}
   .hero{padding-top:24px}
+
+  .hero-illustration-wrap{
+    margin:0 -28px;   /* bleed to edges */
+    -webkit-mask-image:linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
+            mask-image:linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
+  }
+
   .q-grid{grid-template-columns:1fr;gap:28px}
   .timeline-head{grid-template-columns:1fr;gap:18px}
   .tl-next{display:none}
 }
+
 @media (max-width:640px){
   .wrap{padding:0 20px}
   .q-cards{grid-template-columns:1fr}
@@ -266,12 +297,11 @@ a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
   .join-title{font-size:30px}
   .chat-fab span{display:none}
   .chat-fab{padding:16px}
+  .hero-illustration-wrap{margin:0 -20px}
 }
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
   .reveal{opacity:1;transform:none}
-  .scene .trace{stroke-dashoffset:0}
-  .scene .nodes circle{opacity:1}
   html{scroll-behavior:auto}
 }

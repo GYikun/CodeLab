@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods &amp; Discoveries · CODELAB — Leiden University</title>
+<meta name="description" content="How CODELAB studies real-world behaviour: smartphone touch dynamics, neural recording, and computational modelling — and what we've found so far.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%231f5ae0'/></svg>">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" id="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="CODELAB, Leiden University">
+      <span class="brand-name"><strong>Code</strong>Lab</span>
+      <span class="brand-sub" data-i18n="brandSub">Leiden University</span>
+    </a>
+
+    <div class="header-controls">
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <a href="index.html" data-i18n="navHome">Homepage</a>
+        <a href="methods.html" class="is-active" data-i18n="navMethods">Methods &amp; Discoveries</a>
+        <a href="questions.html" data-i18n="navQuestions">Research Questions</a>
+        <a href="index.html#partners" data-i18n="navPartners">Partners</a>
+        <a href="team.html" data-i18n="navTeam">Team</a>
+        <a href="resources.html" data-i18n="navResources">Resources</a>
+        <a href="index.html#join" class="btn btn-primary btn-sm nav-cta" data-i18n="navJoin">Join a Study</a>
+      </nav>
+
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn is-active" data-lang="en" type="button">EN</button>
+        <button class="lang-btn" data-lang="nl" type="button">NL</button>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb reveal">
+      <a href="index.html" data-i18n="breadcrumbHome">Homepage</a>
+      <span>/</span>
+      <span data-i18n="navMethods">Methods &amp; Discoveries</span>
+    </div>
+    <h1 class="page-title reveal" data-delay="1" data-i18n="pageTitle">Methods &amp; Discoveries</h1>
+    <p class="page-lede reveal" data-delay="2" data-i18n="pageLede">
+      How do you study a brain in the middle of everyday life? We combine three
+      methods that, together, turn ordinary smartphone use into a scientific instrument.
+    </p>
+    <div class="flow-thread reveal" data-delay="3">
+      <div class="flow-step"><span class="flow-dot"></span><span class="flow-label" data-i18n="flowQuestion">Question</span></div>
+      <div class="flow-step"><span class="flow-dot"></span><span class="flow-label" data-i18n="flowExplanation">Explanation</span></div>
+      <div class="flow-step"><span class="flow-dot"></span><span class="flow-label" data-i18n="flowEvidence">Evidence</span></div>
+      <div class="flow-step"><span class="flow-dot"></span><span class="flow-label" data-i18n="flowNext">Next step</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODS (Explanation) -->
+<section class="methods-section">
+  <div class="wrap">
+    <p class="section-label reveal" data-i18n="methodsLabel">Our methods</p>
+    <h2 class="section-title reveal" data-delay="1" data-i18n="methodsTitle">Three ways of reading behaviour</h2>
+    <p class="section-lede reveal" data-delay="2" data-i18n="methodsLede">
+      Each method captures a different layer of the same signal — how the brain
+      shapes behaviour, and how behaviour reveals the brain.
+    </p>
+
+    <div class="methods-grid" style="margin-top: 48px">
+      <div class="method-card tap reveal">
+        <div class="method-num" aria-hidden="true">01</div>
+        <div class="method-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="6" y="2" width="12" height="20" rx="2.5"/>
+            <path d="M10.5 5h3"/><circle cx="12" cy="15" r="2.5"/><path d="M12 12.5v-3"/>
+          </svg>
+        </div>
+        <h3 class="method-name" data-i18n="method1Name">Tappigraphy</h3>
+        <p class="method-desc" data-i18n="method1Desc">Continuous, passive capture of the timing, rhythm and dynamics of everyday smartphone taps and swipes — a behavioural signal that never stops recording, even when the lab is closed.</p>
+        <div class="method-tags">
+          <span class="method-tag" data-i18n="method1Tag1">Touch dynamics</span>
+          <span class="method-tag" data-i18n="method1Tag2">Passive capture</span>
+          <span class="method-tag" data-i18n="method1Tag3">Continuous data</span>
+        </div>
+      </div>
+
+      <div class="method-card neural reveal" data-delay="1">
+        <div class="method-num" aria-hidden="true">02</div>
+        <div class="method-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 2v6L4 20h16L15 8V2"/><path d="M8.5 2h7"/><path d="M9 14h6"/>
+          </svg>
+        </div>
+        <h3 class="method-name" data-i18n="method2Name">Neural recording</h3>
+        <p class="method-desc" data-i18n="method2Desc">From intracranial brain implants in clinical populations to laboratory EEG tasks — linking real brain activity to real-world touchscreen behaviour.</p>
+        <div class="method-tags">
+          <span class="method-tag" data-i18n="method2Tag1">Brain implants</span>
+          <span class="method-tag" data-i18n="method2Tag2">EEG</span>
+          <span class="method-tag" data-i18n="method2Tag3">Clinical populations</span>
+        </div>
+      </div>
+
+      <div class="method-card model reveal" data-delay="2">
+        <div class="method-num" aria-hidden="true">03</div>
+        <div class="method-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 20V10M9.3 20V5M14.7 20v-8M20 20V8"/>
+            <circle cx="4" cy="7" r="2"/><circle cx="9.3" cy="3" r="2"/>
+            <circle cx="14.7" cy="10" r="2"/><circle cx="20" cy="6" r="2"/>
+          </svg>
+        </div>
+        <h3 class="method-name" data-i18n="method3Name">Computational &amp; complexity science</h3>
+        <p class="method-desc" data-i18n="method3Desc">Machine learning and nonlinear dynamics applied to large-scale behavioural time series — revealing ageing, disease and rhythmic patterns invisible to the naked eye.</p>
+        <div class="method-tags">
+          <span class="method-tag" data-i18n="method3Tag1">Machine learning</span>
+          <span class="method-tag" data-i18n="method3Tag2">Complexity science</span>
+          <span class="method-tag" data-i18n="method3Tag3">Large-scale data</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCOVERIES (Evidence) -->
+<section class="discoveries-section">
+  <div class="wrap">
+    <p class="section-label reveal" data-i18n="discoveriesLabel">Evidence</p>
+    <h2 class="section-title reveal" data-delay="1" data-i18n="discoveriesTitle">What we've found so far</h2>
+
+    <div class="discovery-grid">
+      <div class="discovery-item reveal">
+        <div class="discovery-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div>
+          <p class="discovery-name" data-i18n="disc1Name">Touch dynamics reveal resilience in ageing</p>
+          <p class="discovery-desc" data-i18n="disc1Desc">The rhythm of everyday taps and swipes stays remarkably stable as people age, exposing a form of behavioural resilience invisible to standard cognitive tests.</p>
+          <span class="discovery-cite">Ceolini, Ridderinkhof &amp; Ghosh — PNAS (2024)</span>
+        </div>
+      </div>
+
+      <div class="discovery-item reveal" data-delay="1">
+        <div class="discovery-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div>
+          <p class="discovery-name" data-i18n="disc2Name">Multi-day rhythms hide in smartphone use</p>
+          <p class="discovery-desc" data-i18n="disc2Desc">Smartphone behaviour follows shared rhythms that repeat across several days, not just within a single day — a pattern common across many users.</p>
+          <span class="discovery-cite">Ceolini &amp; Ghosh — npj Digital Medicine (2023)</span>
+        </div>
+      </div>
+
+      <div class="discovery-item reveal" data-delay="2">
+        <div class="discovery-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M9.3 20V5M14.7 20v-8M20 20V8"/></svg></div>
+        <div>
+          <p class="discovery-name" data-i18n="disc3Name">AI detects epilepsy from touch behaviour alone</p>
+          <p class="discovery-desc" data-i18n="disc3Desc">A neural network trained only on smartphone touchscreen behaviour can trace epileptiform activity, without any direct brain recording.</p>
+          <span class="discovery-cite">Duckrow, Ceolini, Zaveri, Brooks &amp; Ghosh — iScience (2021)</span>
+        </div>
+      </div>
+
+      <div class="discovery-item reveal" data-delay="3">
+        <div class="discovery-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></div>
+        <div>
+          <p class="discovery-name" data-i18n="disc4Name">Smartphone data flags neurological disease</p>
+          <p class="discovery-desc" data-i18n="disc4Desc">A model of healthy ageing built from everyday smartphone interactions reveals an advanced "behavioural age" in people with neurological disease.</p>
+          <span class="discovery-cite">Ceolini, Brunner, Bunschoten, Majoie, Thijs &amp; Ghosh — iScience (2022)</span>
+        </div>
+      </div>
+
+      <div class="discovery-item reveal" data-delay="4">
+        <div class="discovery-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <p class="discovery-name" data-i18n="disc5Name">Sleep behaviour has a stable, personal signature</p>
+          <p class="discovery-desc" data-i18n="disc5Desc">Combining wearables, phone use and self-reports uncovers trait-like patterns in nighttime sleep that stay stable across time for each person.</p>
+          <span class="discovery-cite">Massar, Chua, Soon, Ng, Ong, Chee, Lee, Ghosh &amp; Chee — npj Digital Medicine (2021)</span>
+        </div>
+      </div>
+
+      <div class="discovery-item reveal" data-delay="5">
+        <div class="discovery-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22V12"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><path d="M12 2a10 10 0 0 1 9.95 9H2.05A10 10 0 0 1 12 2z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div>
+          <p class="discovery-name" data-i18n="disc6Name">Dopamine capacity mirrors social phone use</p>
+          <p class="discovery-desc" data-i18n="disc6Desc">The brain's striatal dopamine synthesis capacity is reflected in how socially active a person is on their smartphone.</p>
+          <span class="discovery-cite">Westbrook, Ghosh, van den Bosch, Määttä, Hofmans &amp; Cools — iScience (2021)</span>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 40px">
+      <a class="tl-link" href="resources.html" data-i18n="methodsResourcesLink" style="display:inline-flex; align-items:center; gap:6px">
+        Browse our full publication list <span class="arrow">→</span>
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- JOIN (Next action) -->
+<section class="join" id="join">
+  <div class="wrap">
+    <a class="join-cta" href="index.html#join">
+      <h2 class="join-title" data-i18n="joinTitle">Take part in a study</h2>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+    <p class="join-lede" data-i18n="joinLede">
+      Contribute a few minutes a day from your phone and help us understand everyday life.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <span class="footer-brand"><strong>Code</strong>Lab</span>
+      <span class="footer-sub" data-i18n="brandSub">Leiden University</span>
+    </div>
+    <p class="footer-note">© <span id="year">2026</span> <span data-i18n="footerNote">CODELAB, Leiden University. Wassenaarseweg 52, Leiden.</span></p>
+  </div>
+</footer>
+
+<button class="chat-fab" id="chatFab" aria-label="Ask CodeLab">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-6.5A8 8 0 1 1 21 12z"/>
+  </svg>
+  <span data-i18n="chatLabel">Ask CodeLab</span>
+</button>
+
+<script src="js/main.js"></script>
+<script>
+initSite({
+  en: {
+    pageTitle: "Methods &amp; Discoveries",
+    pageLede: "How do you study a brain in the middle of everyday life? We combine three methods that, together, turn ordinary smartphone use into a scientific instrument.",
+    methodsLabel: "Our methods",
+    methodsTitle: "Three ways of reading behaviour",
+    methodsLede: "Each method captures a different layer of the same signal — how the brain shapes behaviour, and how behaviour reveals the brain.",
+    method1Name: "Tappigraphy",
+    method1Desc: "Continuous, passive capture of the timing, rhythm and dynamics of everyday smartphone taps and swipes — a behavioural signal that never stops recording, even when the lab is closed.",
+    method1Tag1: "Touch dynamics", method1Tag2: "Passive capture", method1Tag3: "Continuous data",
+    method2Name: "Neural recording",
+    method2Desc: "From intracranial brain implants in clinical populations to laboratory EEG tasks — linking real brain activity to real-world touchscreen behaviour.",
+    method2Tag1: "Brain implants", method2Tag2: "EEG", method2Tag3: "Clinical populations",
+    method3Name: "Computational &amp; complexity science",
+    method3Desc: "Machine learning and nonlinear dynamics applied to large-scale behavioural time series — revealing ageing, disease and rhythmic patterns invisible to the naked eye.",
+    method3Tag1: "Machine learning", method3Tag2: "Complexity science", method3Tag3: "Large-scale data",
+    discoveriesLabel: "Evidence",
+    discoveriesTitle: "What we've found so far",
+    disc1Name: "Touch dynamics reveal resilience in ageing",
+    disc1Desc: "The rhythm of everyday taps and swipes stays remarkably stable as people age, exposing a form of behavioural resilience invisible to standard cognitive tests.",
+    disc2Name: "Multi-day rhythms hide in smartphone use",
+    disc2Desc: "Smartphone behaviour follows shared rhythms that repeat across several days, not just within a single day — a pattern common across many users.",
+    disc3Name: "AI detects epilepsy from touch behaviour alone",
+    disc3Desc: "A neural network trained only on smartphone touchscreen behaviour can trace epileptiform activity, without any direct brain recording.",
+    disc4Name: "Smartphone data flags neurological disease",
+    disc4Desc: "A model of healthy ageing built from everyday smartphone interactions reveals an advanced \u201Cbehavioural age\u201D in people with neurological disease.",
+    disc5Name: "Sleep behaviour has a stable, personal signature",
+    disc5Desc: "Combining wearables, phone use and self-reports uncovers trait-like patterns in nighttime sleep that stay stable across time for each person.",
+    disc6Name: "Dopamine capacity mirrors social phone use",
+    disc6Desc: "The brain's striatal dopamine synthesis capacity is reflected in how socially active a person is on their smartphone.",
+    methodsResourcesLink: 'Browse our full publication list <span class="arrow">→</span>',
+    joinTitle: "Take part in a study",
+    joinLede: "Contribute a few minutes a day from your phone and help us understand everyday life."
+  },
+  nl: {
+    pageTitle: "Methoden &amp; Bevindingen",
+    pageLede: "Hoe bestudeer je een brein midden in het dagelijks leven? We combineren drie methoden die samen gewoon smartphonegebruik omzetten in een wetenschappelijk instrument.",
+    methodsLabel: "Onze methoden",
+    methodsTitle: "Drie manieren om gedrag te lezen",
+    methodsLede: "Elke methode legt een andere laag van hetzelfde signaal vast — hoe het brein gedrag vormt, en hoe gedrag het brein onthult.",
+    method1Name: "Tappigraphy",
+    method1Desc: "Continue, passieve registratie van de timing, het ritme en de dynamiek van alledaagse smartphonetikken en swipes — een gedragssignaal dat nooit stopt met opnemen, ook niet als het lab gesloten is.",
+    method1Tag1: "Aanraakdynamiek", method1Tag2: "Passieve registratie", method1Tag3: "Continue data",
+    method2Name: "Neurale registratie",
+    method2Desc: "Van intracraniële hersenimplantaten bij klinische populaties tot EEG-taken in het lab — waarbij echte hersenactiviteit wordt gekoppeld aan gedrag op het scherm in het echte leven.",
+    method2Tag1: "Hersenimplantaten", method2Tag2: "EEG", method2Tag3: "Klinische populaties",
+    method3Name: "Computationele &amp; complexiteitswetenschap",
+    method3Desc: "Machine learning en niet-lineaire dynamica toegepast op grootschalige gedragsreeksen — die verouderings-, ziekte- en ritmepatronen onthullen die met het blote oog onzichtbaar zijn.",
+    method3Tag1: "Machine learning", method3Tag2: "Complexiteitswetenschap", method3Tag3: "Grootschalige data",
+    discoveriesLabel: "Bewijs",
+    discoveriesTitle: "Wat we tot nu toe hebben ontdekt",
+    disc1Name: "Aanraakdynamiek onthult veerkracht bij veroudering",
+    disc1Desc: "Het ritme van alledaagse tikken en swipes blijft opvallend stabiel naarmate mensen ouder worden — een vorm van gedragsveerkracht die onzichtbaar is voor standaard cognitieve tests.",
+    disc2Name: "Meerdaagse ritmes verscholen in smartphonegebruik",
+    disc2Desc: "Smartphonegedrag volgt gedeelde ritmes die zich over meerdere dagen herhalen, niet alleen binnen één dag — een patroon dat bij veel gebruikers voorkomt.",
+    disc3Name: "AI herkent epilepsie enkel aan aanraakgedrag",
+    disc3Desc: "Een neuraal netwerk dat uitsluitend is getraind op smartphone-aanraakgedrag kan epileptiforme activiteit traceren, zonder directe hersenregistratie.",
+    disc4Name: "Smartphonedata signaleert neurologische aandoeningen",
+    disc4Desc: "Een model van gezonde veroudering, gebouwd op alledaagse smartphone-interacties, onthult een gevorderde \u201Cgedragsleeftijd\u201D bij mensen met een neurologische aandoening.",
+    disc5Name: "Slaapgedrag heeft een stabiele, persoonlijke signatuur",
+    disc5Desc: "Het combineren van wearables, telefoongebruik en zelfrapportage onthult trait-achtige patronen in nachtelijke slaap die voor elk individu stabiel blijven over de tijd.",
+    disc6Name: "Dopaminecapaciteit weerspiegelt sociaal telefoongebruik",
+    disc6Desc: "De dopaminesynthesecapaciteit van het striatum wordt weerspiegeld in hoe sociaal actief iemand is op zijn smartphone.",
+    methodsResourcesLink: 'Bekijk onze volledige publicatielijst <span class="arrow">→</span>',
+    joinTitle: "Doe mee aan een onderzoek",
+    joinLede: "Draag een paar minuten per dag bij via je telefoon en help ons het dagelijks leven beter begrijpen."
+  }
+});
+</script>
+</body>
+</html>
