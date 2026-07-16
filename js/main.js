@@ -1,76 +1,171 @@
-/* CodeLab — interactions */
-(function () {
+/* CodeLab — shared site behaviour and i18n
+   Each page calls initSite(pageTranslations) with its own EN/NL content;
+   this file supplies the common nav/footer/chat strings and all the
+   interactive wiring (mobile nav, scroll reveal, language switch, etc). */
+(function (global) {
   'use strict';
 
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var commonTranslations = {
+    en: {
+      brandSub: "Leiden University",
+      navHome: "Homepage",
+      navMethods: "Methods &amp; Discoveries",
+      navQuestions: "Research Questions",
+      navPartners: "Partners",
+      navTeam: "Team",
+      navResources: "Resources",
+      navJoin: "Join a Study",
+      footerNote: "CODELAB, Leiden University. Wassenaarseweg 52, Leiden.",
+      chatLabel: "Ask CodeLab",
+      chatAlert: "Ask CodeLab — connect your chat panel in js/main.js.",
+      navOpenMenu: "Open menu",
+      navCloseMenu: "Close menu",
+      breadcrumbHome: "Homepage",
+      flowQuestion: "Question",
+      flowExplanation: "Explanation",
+      flowEvidence: "Evidence",
+      flowNext: "Next step"
+    },
+    nl: {
+      brandSub: "Universiteit Leiden",
+      navHome: "Home",
+      navMethods: "Methoden &amp; Bevindingen",
+      navQuestions: "Onderzoeksvragen",
+      navPartners: "Partners",
+      navTeam: "Team",
+      navResources: "Bronnen",
+      navJoin: "Doe mee aan onderzoek",
+      footerNote: "CODELAB, Universiteit Leiden. Wassenaarseweg 52, Leiden.",
+      chatLabel: "Vraag CodeLab",
+      chatAlert: "Vraag CodeLab — koppel hier je eigen chatpaneel (js/main.js).",
+      navOpenMenu: "Menu openen",
+      navCloseMenu: "Menu sluiten",
+      breadcrumbHome: "Home",
+      flowQuestion: "Vraag",
+      flowExplanation: "Uitleg",
+      flowEvidence: "Bewijs",
+      flowNext: "Volgende stap"
+    }
+  };
 
-  /* ---------- 1. 移动端菜单 ---------- */
-  const toggle = document.getElementById('navToggle');
-  const nav = document.getElementById('primary-nav');
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    });
-    nav.querySelectorAll('a').forEach(a =>
-      a.addEventListener('click', () => {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      })
-    );
-  }
+  function initSite(pageTranslations) {
+    pageTranslations = pageTranslations || { en: {}, nl: {} };
+    var translations = {
+      en: Object.assign({}, commonTranslations.en, pageTranslations.en),
+      nl: Object.assign({}, commonTranslations.nl, pageTranslations.nl)
+    };
 
-  /* ---------- 2. 头部滚动阴影 ---------- */
-  const header = document.getElementById('header');
-  const onScroll = () => header.classList.toggle('is-stuck', window.scrollY > 8);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var currentLang = 'en';
+    try { currentLang = localStorage.getItem('codelab-lang') || 'en'; } catch (e) {}
+    if (!translations[currentLang]) currentLang = 'en';
 
-  /* ---------- 3. 滚动入场 ---------- */
-  const items = document.querySelectorAll('.reveal');
-  if (reduced || !('IntersectionObserver' in window)) {
-    items.forEach(el => el.classList.add('is-in'));
-  } else {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-in');
-          io.unobserve(e.target);
-        }
+    function applyLanguage(lang) {
+      if (!translations[lang]) return;
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        var value = translations[lang][key];
+        if (value != null) el.innerHTML = value;
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
-    items.forEach(el => io.observe(el));
-  }
-
-  /* ---------- 4. 导航高亮当前区块 ---------- */
-  const sections = ['top', 'methods', 'questions', 'partners', 'team', 'resources']
-    .map(id => document.getElementById(id)).filter(Boolean);
-  const links = new Map();
-  document.querySelectorAll('.nav a[href^="#"]').forEach(a =>
-    links.set(a.getAttribute('href').slice(1), a)
-  );
-  if ('IntersectionObserver' in window) {
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        links.forEach(l => l.classList.remove('is-active'));
-        const link = links.get(e.target.id);
-        if (link) link.classList.add('is-active');
+      document.querySelectorAll('.lang-btn').forEach(function (b) {
+        b.classList.toggle('is-active', b.dataset.lang === lang);
       });
-    }, { threshold: 0.4 });
-    sections.forEach(s => spy.observe(s));
-  }
+      var toggleBtn = document.getElementById('navToggle');
+      if (toggleBtn) {
+        var isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+        toggleBtn.setAttribute('aria-label', isOpen ? translations[lang].navCloseMenu : translations[lang].navOpenMenu);
+      }
+      try { localStorage.setItem('codelab-lang', lang); } catch (e) {}
+    }
 
-  /* ---------- 5. 年份 ---------- */
-  const y = document.getElementById('year');
-  if (y) y.textContent = new Date().getFullYear();
-
-  /* ---------- 6. 聊天按钮 ---------- */
-  const fab = document.getElementById('chatFab');
-  if (fab) {
-    fab.addEventListener('click', () => {
-      alert('Ask CodeLab — 聊天面板还没接上，可在 js/main.js 第 6 段替换成你的实现。');
+    document.querySelectorAll('.lang-btn').forEach(function (b) {
+      b.addEventListener('click', function () { applyLanguage(b.dataset.lang); });
     });
+
+    applyLanguage(currentLang);
+
+    /* Mobile menu */
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('primary-nav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? translations[currentLang].navCloseMenu : translations[currentLang].navOpenMenu);
+      });
+      nav.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', translations[currentLang].navOpenMenu);
+        });
+      });
+    }
+
+    /* Header scroll shadow */
+    var header = document.getElementById('header');
+    if (header) {
+      var onScroll = function () { header.classList.toggle('is-stuck', window.scrollY > 8); };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    /* SVG trace lengths (hero illustration, homepage only — no-op elsewhere) */
+    document.querySelectorAll('.scene .trace').forEach(function (p) {
+      try {
+        var len = Math.ceil(p.getTotalLength());
+        p.style.setProperty('--len', len);
+      } catch (e) {}
+    });
+
+    /* Scroll reveal */
+    var items = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('is-in'); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+      items.forEach(function (el) { io.observe(el); });
+    }
+
+    /* Nav active-section highlight (in-page anchors on the current page only) */
+    var navSectionIds = ['top', 'why', 'timeline', 'partners'];
+    var sections = navSectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    if (sections.length) {
+      var links = new Map();
+      document.querySelectorAll('.nav a[href^="#"]').forEach(function (a) {
+        links.set(a.getAttribute('href').slice(1), a);
+      });
+      if ('IntersectionObserver' in window) {
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            links.forEach(function (l) { l.classList.remove('is-active'); });
+            var link = links.get(e.target.id);
+            if (link) link.classList.add('is-active');
+          });
+        }, { threshold: 0.3 });
+        sections.forEach(function (s) { spy.observe(s); });
+      }
+    }
+
+    /* Year */
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    /* Chat FAB */
+    var fab = document.getElementById('chatFab');
+    if (fab) {
+      fab.addEventListener('click', function () {
+        alert(translations[currentLang].chatAlert);
+      });
+    }
   }
-})();
+
+  global.initSite = initSite;
+})(window);

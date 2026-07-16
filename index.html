@@ -1,266 +1,235 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CodeLab · Leiden University — Understanding Human Behaviour in Everyday Life</title>
-<meta name="description" content="CodeLab uses smartphones and behavioural science to discover how people think, feel and act in the real world.">
+<title>CODELAB · Leiden University — Understanding Human Behaviour in Everyday Life</title>
+<meta name="description" content="CODELAB studies the neural and behavioural processes behind real-world smartphone use, combining brain data with everyday touchscreen behaviour.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%231f5ae0'/></svg>">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<!-- ============ HEADER ============ -->
+<!-- HEADER -->
 <header class="site-header" id="header">
   <div class="wrap header-inner">
-    <a class="brand" href="#top" aria-label="CodeLab, Leiden University">
+    <a class="brand" href="#top" aria-label="CODELAB, Leiden University">
       <span class="brand-name"><strong>Code</strong>Lab</span>
-      <span class="brand-sub">Leiden University</span>
+      <span class="brand-sub" data-i18n="brandSub">Leiden University</span>
     </a>
 
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-
     <nav class="nav" id="primary-nav" aria-label="Primary">
-      <a href="#top" class="is-active">Homepage</a>
-      <a href="#methods">Methods &amp; Discoveries</a>
-      <a href="#questions">Research Questions</a>
-      <a href="#partners">Partners</a>
-      <a href="#team">Team</a>
-      <a href="#resources">Resources</a>
-      <a href="#join" class="btn btn-primary btn-sm nav-cta">Join a Study</a>
-    </nav>
+        <a href="#top" class="is-active" data-i18n="navHome">Homepage</a>
+        <a href="methods.html" data-i18n="navMethods">Methods &amp; Discoveries</a>
+        <a href="questions.html" data-i18n="navQuestions">Research Questions</a>
+        <a href="#partners" data-i18n="navPartners">Partners</a>
+        <a href="team.html" data-i18n="navTeam">Team</a>
+        <a href="resources.html" data-i18n="navResources">Resources</a>
+      </nav>
+
+    <div class="header-controls">
+      <a href="#join" class="btn btn-primary btn-sm nav-cta" data-i18n="navJoin">Join a Study</a>
+
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn is-active" data-lang="en" type="button">EN</button>
+        <button class="lang-btn" data-lang="nl" type="button">NL</button>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
 <main id="top">
 
-<!-- ============ HERO ============ -->
+<!-- HERO -->
 <section class="hero">
-  <div class="wrap hero-grid">
-
-    <!-- ---------- Copy: left column ---------- -->
+  <div class="wrap hero-inner">
     <div class="hero-copy">
-      <h1 class="hero-title reveal">
-        Understanding<br>
-        Human Behaviour<br>
-        <em>in Everyday Life</em>
+      <h1 class="hero-title reveal" data-i18n="heroTitle">
+        Understanding<br>Human Behaviour<br><em>in Everyday Life</em>
       </h1>
-      <p class="hero-lede reveal" data-delay="1">
-        We use smartphones and behavioural science
-        to discover how people think, feel and act
-        in the real world.
+      <p class="hero-lede reveal" data-delay="1" data-i18n="heroLede">
+        We study the neural and behavioural signals behind everyday smartphone use —
+        building a new generation of brain science focused on how people really think,
+        feel and act, not just how they perform in a lab.
       </p>
       <div class="hero-actions reveal" data-delay="2">
-        <a href="#questions" class="btn btn-primary">Explore Research <span class="arrow" aria-hidden="true">→</span></a>
-        <a href="#join" class="btn btn-ghost">Join Our Studies</a>
+        <a href="questions.html" class="btn btn-primary" data-i18n="heroExplore">Explore Research <span class="arrow" aria-hidden="true">→</span></a>
+        <a href="#join" class="btn btn-ghost" data-i18n="heroJoinBtn">Join Our Studies</a>
       </div>
-      <a href="#timeline" class="scroll-hint reveal" data-delay="3">
-        <svg viewBox="0 0 16 26" width="16" height="26" aria-hidden="true">
-          <rect x="1" y="1" width="14" height="24" rx="7" fill="none" stroke="currentColor" stroke-width="1.4"/>
-          <circle class="scroll-dot" cx="8" cy="8" r="2" fill="currentColor"/>
+      <a href="#why" class="scroll-hint reveal" data-delay="3">
+        <svg class="scroll-arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M12 4v14M12 18l-6-6M12 18l6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span>Scroll to explore</span>
+        <span data-i18n="heroScroll">Scroll to explore</span>
       </a>
     </div>
-
-    <!-- ---------- Illustration: right column ---------- -->
-    <div class="hero-art">
-      <div class="hero-illustration-wrap">
-        <img
-          src="assets/img/hero-illustration.png"
-          alt="An illustrated scene of everyday life in Leiden: people cycling, studying, sleeping, using smartphones and riding the bus, all connected by a winding data thread through the city."
-          width="1400"
-          height="780"
-          loading="eager"
-          fetchpriority="high"
-        >
-      </div>
+    <div class="hero-media reveal" data-delay="1">
+      <img class="hero-bg" src="assets/img/hero-scene.png" alt="An illustrated Leiden scene: six people going about everyday life — walking on a canal bridge, cycling, running, sitting with a smartphone, studying, and riding the bus — all connected by a continuous thread of behavioural data, with the Leiden skyline, canal and windmill in the background." loading="eager">
     </div>
-
-  </div><!-- /.hero-grid -->
+  </div>
 </section>
 
-<!-- ============ TIMELINE ============ -->
+<!-- TIMELINE -->
 <section class="timeline-band" id="timeline">
   <div class="wrap">
     <div class="timeline-head">
-      <h2 class="timeline-title">A short history of<br>understanding behaviour</h2>
-
+      <h2 class="timeline-title" data-i18n="timelineTitle">CODELAB's<br>research milestones</h2>
       <div class="timeline-scroller">
         <ol class="timeline">
           <li class="tl-item reveal">
-            <span class="tl-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M8 2.5v19"/><path d="M11 8h6M11 12h6M11 16h4"/></svg>
-            </span>
-            <span class="tl-era">1900s</span>
-            <span class="tl-text">Paper diaries<br>and observation</span>
+            <span class="tl-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10.5 5h3"/><path d="M12 9.5l2.5 2.5L12 14.5 9.5 12z"/></svg></span>
+            <span class="tl-era">2014</span><span class="tl-text" data-i18n="tlText1">WIRED covers the<br>smartphone-shaped brain</span>
           </li>
           <li class="tl-item reveal" data-delay="1">
-            <span class="tl-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 2h6v3H9z"/><path d="M8 10h.01M8 14h.01M8 18h.01M11 10h6M11 14h6M11 18h4"/></svg>
-            </span>
-            <span class="tl-era">1960s</span>
-            <span class="tl-text">Questionnaires<br>and surveys</span>
+            <span class="tl-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+            <span class="tl-era">2019</span><span class="tl-text" data-i18n="tlText2">First sleep-wake cycles<br>captured from smartphone taps</span>
           </li>
           <li class="tl-item reveal" data-delay="2">
-            <span class="tl-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2v6L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 8V2z"/><path d="M8.5 2h7"/><path d="M7 15h10"/></svg>
-            </span>
-            <span class="tl-era">1980s</span>
-            <span class="tl-text">Laboratory<br>experiments</span>
+            <span class="tl-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H8l-4 4z"/></svg></span>
+            <span class="tl-era">2021</span><span class="tl-text" data-i18n="tlText3">The Guardian names<br>the field "tappigraphy"</span>
           </li>
           <li class="tl-item reveal" data-delay="3">
-            <span class="tl-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/><circle cx="12" cy="10" r="3"/><path d="M9 10h6M12 7v6"/></svg>
-            </span>
-            <span class="tl-era">2000s</span>
-            <span class="tl-text">The internet era</span>
+            <span class="tl-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16"/><path d="M12 6.5a3.5 3.5 0 1 0-3.5 3.5H12"/><path d="M12 6.5A3.5 3.5 0 1 1 15.5 10H12"/><path d="M12 14a3.5 3.5 0 1 0-3.5 3.5"/><path d="M12 14a3.5 3.5 0 1 1 3.5 3.5"/></svg></span>
+            <span class="tl-era">2022</span><span class="tl-text" data-i18n="tlText4">AI traces ageing and<br>disease in touch dynamics</span>
           </li>
           <li class="tl-item reveal" data-delay="4">
-            <span class="tl-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10.5 5h3"/><path d="M12 9.5l2.5 2.5L12 14.5 9.5 12z"/></svg>
-            </span>
-            <span class="tl-era">2010s</span>
-            <span class="tl-text">Smartphones<br>change everything</span>
+            <span class="tl-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></span>
+            <span class="tl-era">2023</span><span class="tl-text" data-i18n="tlText5">Multi-day rhythms<br>found in smartphone use</span>
           </li>
           <li class="tl-item tl-now reveal" data-delay="5">
-            <span class="tl-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="8" r="2.5"/><circle cx="17" cy="8" r="2.5"/><circle cx="12" cy="7" r="3"/><path d="M2.5 20v-2a4 4 0 0 1 4-4h1"/><path d="M21.5 20v-2a4 4 0 0 0-4-4h-1"/><path d="M7 20v-2.5A5 5 0 0 1 12 13a5 5 0 0 1 5 4.5V20"/></svg>
-            </span>
-            <span class="tl-era">Today</span>
-            <span class="tl-text">We study life<br>as it happens</span>
+            <span class="tl-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2v6L4 20h16L15 8V2"/><path d="M8.5 2h7"/></svg></span>
+            <span class="tl-era" data-i18n="tlEraToday">Today</span><span class="tl-text" data-i18n="tlText6">Neural implants and<br>smartphone data combined</span>
           </li>
           <li class="tl-item reveal" data-delay="6">
-            <span class="tl-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 21v-3a5.5 5.5 0 0 0 2.5-9.5A5.5 5.5 0 0 0 7 5.5 4.5 4.5 0 0 0 5.5 14H8v7"/><path d="M11 11.5h3M12.5 10v3"/></svg>
-            </span>
-            <span class="tl-era">Future</span>
-            <span class="tl-text">Towards digital<br>twins of behaviour</span>
+            <span class="tl-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.5 1.5 1.5 4 0 5.5s-4 1.5-5.5 0M5 10C3.5 8.5 3.5 6 5 4.5s4-1.5 5.5 0M8 16l8-8"/></svg></span>
+            <span class="tl-era" data-i18n="tlEraFuture">Future</span><span class="tl-text" data-i18n="tlText7">Spin-offs bring findings<br>into the clinic</span>
           </li>
         </ol>
         <div class="tl-axis" aria-hidden="true">
           <span class="tl-line"></span>
           <span class="tl-dot" style="--i:0"></span><span class="tl-dot" style="--i:1"></span>
           <span class="tl-dot" style="--i:2"></span><span class="tl-dot" style="--i:3"></span>
-          <span class="tl-dot tl-dot-green" style="--i:4"></span><span class="tl-dot tl-dot-amber" style="--i:5"></span>
+          <span class="tl-dot tl-dot-green" style="--i:4"></span>
+          <span class="tl-dot tl-dot-amber" style="--i:5"></span>
           <span class="tl-dot" style="--i:6"></span>
         </div>
       </div>
-
-      <a class="tl-next" href="#questions" aria-label="Next">→</a>
+      <a class="tl-next" href="#partners" aria-label="Next">→</a>
     </div>
-
-    <a class="tl-link" href="#methods">Why real-world behaviour matters <span class="arrow">→</span></a>
+    <a class="tl-link" href="methods.html" data-i18n="tlLink">See our methods in detail <span class="arrow">→</span></a>
   </div>
 </section>
 
-<!-- ============ BIG QUESTIONS ============ -->
-<section class="questions" id="questions">
-  <div class="wrap q-grid">
-    <div class="q-intro">
-      <h2 class="q-title">The big questions</h2>
-      <p class="q-lede">We ask fundamental questions about behaviour in the real world.</p>
-      <a href="#questions" class="btn btn-primary">See all research questions <span class="arrow">→</span></a>
-    </div>
+<!-- WHY REAL-WORLD BEHAVIOUR MATTERS -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="why-grid">
 
-    <div class="q-cards">
-      <article class="card reveal">
-        <div class="card-media">
-          <img src="assets/img/q-society.svg" alt="" loading="lazy" width="400" height="220">
-          <span class="card-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
-          </span>
-        </div>
-        <h3>How is smartphone behaviour changing society?</h3>
-        <a class="card-link" href="#">Explore <span class="arrow">→</span></a>
-      </article>
+      <div>
+        <p class="section-label reveal" data-i18n="whyLabel">Why it matters</p>
+        <h2 class="section-title reveal" data-delay="1" data-i18n="whyTitle">
+          Behaviour unfolds<br>on the screen, not the bench.
+        </h2>
+        <p class="why-body reveal" data-delay="2" data-i18n="whyBody1">
+          Most of what we know about the brain comes from short, artificial tasks
+          performed on a bench in a lab. But the way people tap, scroll and pause on
+          their smartphones, thousands of times a day, carries a continuous record of
+          how the brain actually works in daily life.
+        </p>
+        <p class="why-body reveal" data-delay="3" data-i18n="whyBody2">
+          CODELAB reads that record. By combining smartphone touchscreen data with
+          neural recordings — from brain implants to laboratory EEG — we uncover
+          patterns of ageing, sleep and neurological disease that no single lab visit
+          could ever reveal.
+        </p>
+      </div>
 
-      <article class="card reveal" data-delay="1">
-        <div class="card-media">
-          <img src="assets/img/q-aging.svg" alt="" loading="lazy" width="400" height="220">
-          <span class="card-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M12 12l7-4M12 12l-7-4M12 17l6-3M12 17l-6-3"/></svg>
-          </span>
+      <div class="why-right reveal" data-delay="1">
+        <div class="why-stat-row">
+          <div class="why-stat">
+            <div class="why-stat-num">8</div>
+            <p class="why-stat-desc" data-i18n="whyStat1Desc">international research and clinical partners across five countries, from Leiden to Yale to Tokyo.</p>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">2</div>
+            <p class="why-stat-desc" data-i18n="whyStat2Desc">spin-off companies launched directly from CODELAB's discoveries, founded in 2016 and 2024.</p>
+          </div>
         </div>
-        <h3>How do we age, and why do people age differently?</h3>
-        <a class="card-link" href="#">Explore <span class="arrow">→</span></a>
-      </article>
+        <blockquote class="why-pull" data-i18n="whyPull">
+          "A tap on a screen is a small thing. A million of them, over years, is a signature of the brain."
+        </blockquote>
+        <div class="why-contrast">
+          <div class="why-contrast-col lab">
+            <h4 data-i18n="whyLabHeader">Traditional bench neuroscience</h4>
+            <ul>
+              <li data-i18n="whyLab1">A single task, a single sitting</li>
+              <li data-i18n="whyLab2">Minutes of behaviour captured</li>
+              <li data-i18n="whyLab3">Behaviour separated from daily life</li>
+              <li data-i18n="whyLab4">One measurement per visit</li>
+            </ul>
+          </div>
+          <div class="why-contrast-col field">
+            <h4 data-i18n="whyFieldHeader">CODELAB's approach</h4>
+            <ul>
+              <li data-i18n="whyField1">Continuous, everyday interaction</li>
+              <li data-i18n="whyField2">Years of behaviour captured</li>
+              <li data-i18n="whyField3">Neural and smartphone data combined</li>
+              <li data-i18n="whyField4">Millions of natural taps and swipes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-      <article class="card reveal" data-delay="2">
-        <div class="card-media">
-          <img src="assets/img/q-wellbeing.svg" alt="" loading="lazy" width="400" height="220">
-          <span class="card-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg>
-          </span>
-        </div>
-        <h3>Can digital behaviour predict mental wellbeing?</h3>
-        <a class="card-link" href="#">Explore <span class="arrow">→</span></a>
-      </article>
-
-      <article class="card reveal" data-delay="3">
-        <div class="card-media">
-          <img src="assets/img/q-ai.svg" alt="" loading="lazy" width="400" height="220">
-          <span class="card-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16"/><path d="M12 6.5a3.5 3.5 0 1 0-3.5 3.5H12"/><path d="M12 6.5A3.5 3.5 0 1 1 15.5 10H12"/><path d="M12 14a3.5 3.5 0 1 0-3.5 3.5"/><path d="M12 14a3.5 3.5 0 1 1 3.5 3.5"/></svg>
-          </span>
-        </div>
-        <h3>Can AI help us understand everyday life?</h3>
-        <a class="card-link" href="#">Explore <span class="arrow">→</span></a>
-      </article>
-
-      <article class="card reveal" data-delay="4">
-        <div class="card-media">
-          <img src="assets/img/q-health.svg" alt="" loading="lazy" width="400" height="220">
-          <span class="card-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M9.3 20V5M14.7 20v-8M20 20V8"/></svg>
-          </span>
-        </div>
-        <h3>How can passive sensing improve healthcare?</h3>
-        <a class="card-link" href="#">Explore <span class="arrow">→</span></a>
-      </article>
     </div>
   </div>
 </section>
 
-<!-- ============ 占位区块 ============ -->
-<section class="stub" id="methods">
+<!-- PARTNERS -->
+<section class="partners" id="partners">
   <div class="wrap">
-    <h2 class="q-title">Methods &amp; Discoveries</h2>
-    <p class="q-lede">Experience sampling, passive smartphone sensing, and computational modelling — combined to study behaviour where it actually happens.</p>
+    <div class="partners-grid">
+      <div>
+        <p class="section-label reveal" data-i18n="partnersLabel">Partners</p>
+        <h2 class="section-title reveal" data-delay="1" data-i18n="partnersTitle">Collaborating across borders</h2>
+        <p class="section-lede reveal" data-delay="2" data-i18n="partnersLede">
+          Our neuroscience and clinical partners span three continents — from Leiden's
+          own university hospital to research groups in the United States, Scandinavia,
+          Switzerland and Japan.
+        </p>
+      </div>
+      <div>
+        <div class="partner-logos">
+          <div class="partner-logo reveal" data-i18n="partnersLogo1">LUMC<br>Leiden</div>
+          <div class="partner-logo reveal" data-delay="1" data-i18n="partnersLogo2">Yale School<br>of Medicine</div>
+          <div class="partner-logo reveal" data-delay="2" data-i18n="partnersLogo3">Aarhus<br>University</div>
+          <div class="partner-logo reveal" data-delay="3" data-i18n="partnersLogo4">University<br>of Bern</div>
+          <div class="partner-logo reveal" data-delay="4" data-i18n="partnersLogo5">CiNet<br>Japan</div>
+          <div class="partner-logo reveal" data-delay="5" data-i18n="partnersLogo6">Children's Hospital<br>Zurich</div>
+          <div class="partner-logo reveal" data-delay="6" data-i18n="partnersLogo7">University<br>of Amsterdam</div>
+          <div class="partner-logo reveal" data-delay="7" data-i18n="partnersLogo8">SEIN</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="stub alt" id="partners">
-  <div class="wrap">
-    <h2 class="q-title">Partners</h2>
-    <p class="q-lede">We collaborate with universities, hospitals and public institutions across Europe.</p>
-  </div>
-</section>
-
-<section class="stub" id="team">
-  <div class="wrap">
-    <h2 class="q-title">Team</h2>
-    <p class="q-lede">Psychologists, data scientists and engineers at Leiden University.</p>
-  </div>
-</section>
-
-<section class="stub alt" id="resources">
-  <div class="wrap">
-    <h2 class="q-title">Resources</h2>
-    <p class="q-lede">Open datasets, code and tools for behavioural researchers.</p>
-  </div>
-</section>
-
+<!-- JOIN -->
 <section class="join" id="join">
-  <div class="wrap join-inner">
-    <h2 class="join-title">Take part in a study</h2>
-    <p>Contribute a few minutes a day from your own phone, and help us understand everyday life.</p>
-    <a class="btn btn-primary btn-lg" href="mailto:codelab@fsw.leidenuniv.nl">Join a Study <span class="arrow">→</span></a>
+  <div class="wrap">
+    <a class="join-cta" href="https://www.universiteitleiden.nl/en/staffmembers/arko-ghosh">
+      <h2 class="join-title" data-i18n="joinTitle">Take part in a study</h2>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+    <p class="join-lede" data-i18n="joinLede">
+      Contribute a few minutes a day from your phone and help us understand everyday life.
+    </p>
   </div>
 </section>
 
@@ -269,25 +238,122 @@
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div>
-      <span class="brand-name footer-brand"><strong>Code</strong>Lab</span>
-      <span class="brand-sub">Leiden University</span>
+      <span class="footer-brand"><strong>Code</strong>Lab</span>
+      <span class="footer-sub" data-i18n="brandSub">Leiden University</span>
     </div>
-    <nav aria-label="Footer">
-      <a href="#methods">Methods &amp; Discoveries</a>
-      <a href="#questions">Research Questions</a>
-      <a href="#team">Team</a>
-      <a href="#resources">Resources</a>
-    </nav>
-    <p class="footer-note">© <span id="year">2026</span> CodeLab, Leiden University. Wassenaarseweg 52, Leiden.</p>
+    <p class="footer-note">© <span id="year">2026</span> <span data-i18n="footerNote">CODELAB, Leiden University. Wassenaarseweg 52, Leiden.</span></p>
   </div>
 </footer>
 
-<!-- 浮动聊天按钮 -->
 <button class="chat-fab" id="chatFab" aria-label="Ask CodeLab">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-6.5A8 8 0 1 1 21 12z"/></svg>
-  <span>Ask CodeLab</span>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-6.5A8 8 0 1 1 21 12z"/>
+  </svg>
+  <span data-i18n="chatLabel">Ask CodeLab</span>
 </button>
 
 <script src="js/main.js"></script>
+<script>
+initSite({
+  en: {
+    heroTitle: "Understanding<br>Human Behaviour<br><em>in Everyday Life</em>",
+    heroLede: "We study the neural and behavioural signals behind everyday smartphone use — building a new generation of brain science focused on how people really think, feel and act, not just how they perform in a lab.",
+    heroExplore: 'Explore Research <span class="arrow" aria-hidden="true">→</span>',
+    heroJoinBtn: "Join Our Studies",
+    heroScroll: "Scroll to explore",
+    heroQuote: "Every behaviour<br>leaves a trace.<br>Every trace tells<br>a story.",
+    whyLabel: "Why it matters",
+    whyTitle: "Behaviour unfolds<br>on the screen, not the bench.",
+    whyBody1: "Most of what we know about the brain comes from short, artificial tasks performed on a bench in a lab. But the way people tap, scroll and pause on their smartphones, thousands of times a day, carries a continuous record of how the brain actually works in daily life.",
+    whyBody2: "CODELAB reads that record. By combining smartphone touchscreen data with neural recordings — from brain implants to laboratory EEG — we uncover patterns of ageing, sleep and neurological disease that no single lab visit could ever reveal.",
+    whyStat1Desc: "international research and clinical partners across five countries, from Leiden to Yale to Tokyo.",
+    whyStat2Desc: "spin-off companies launched directly from CODELAB's discoveries, founded in 2016 and 2024.",
+    whyPull: "\u201CA tap on a screen is a small thing. A million of them, over years, is a signature of the brain.\u201D",
+    whyLabHeader: "Traditional bench neuroscience",
+    whyFieldHeader: "CODELAB's approach",
+    whyLab1: "A single task, a single sitting",
+    whyLab2: "Minutes of behaviour captured",
+    whyLab3: "Behaviour separated from daily life",
+    whyLab4: "One measurement per visit",
+    whyField1: "Continuous, everyday interaction",
+    whyField2: "Years of behaviour captured",
+    whyField3: "Neural and smartphone data combined",
+    whyField4: "Millions of natural taps and swipes",
+    timelineTitle: "CODELAB's<br>research milestones",
+    tlText1: "WIRED covers the<br>smartphone-shaped brain",
+    tlText2: "First sleep-wake cycles<br>captured from smartphone taps",
+    tlText3: "The Guardian names<br>the field \u201Ctappigraphy\u201D",
+    tlText4: "AI traces ageing and<br>disease in touch dynamics",
+    tlText5: "Multi-day rhythms<br>found in smartphone use",
+    tlEraToday: "Today",
+    tlText6: "Neural implants and<br>smartphone data combined",
+    tlEraFuture: "Future",
+    tlText7: "Spin-offs bring findings<br>into the clinic",
+    tlLink: 'See our methods in detail <span class="arrow">→</span>',
+    partnersLabel: "Partners",
+    partnersTitle: "Collaborating across borders",
+    partnersLede: "Our neuroscience and clinical partners span three continents — from Leiden's own university hospital to research groups in the United States, Scandinavia, Switzerland and Japan.",
+    partnersLogo1: "LUMC<br>Leiden",
+    partnersLogo2: "Yale School<br>of Medicine",
+    partnersLogo3: "Aarhus<br>University",
+    partnersLogo4: "University<br>of Bern",
+    partnersLogo5: "CiNet<br>Japan",
+    partnersLogo6: "Children's Hospital<br>Zurich",
+    partnersLogo7: "University<br>of Amsterdam",
+    partnersLogo8: "SEIN",
+    joinTitle: "Take part in a study",
+    joinLede: "Contribute a few minutes a day from your phone and help us understand everyday life."
+  },
+  nl: {
+    heroTitle: "Menselijk gedrag<br>begrijpen<br><em>in het dagelijks leven</em>",
+    heroLede: "We onderzoeken de neurale en gedragsmatige signalen achter alledaags smartphonegebruik — en bouwen zo aan een nieuwe generatie hersenwetenschap die laat zien hoe mensen echt denken, voelen en handelen, niet alleen hoe ze presteren in een lab.",
+    heroExplore: 'Ontdek ons onderzoek <span class="arrow" aria-hidden="true">→</span>',
+    heroJoinBtn: "Doe mee aan onderzoek",
+    heroScroll: "Scroll om verder te lezen",
+    heroQuote: "Elk gedrag<br>laat een spoor na.<br>Elk spoor vertelt<br>een verhaal.",
+    whyLabel: "Waarom het ertoe doet",
+    whyTitle: "Gedrag ontvouwt zich<br>op het scherm, niet op de labbank.",
+    whyBody1: "Het meeste dat we weten over het brein komt uit korte, kunstmatige taken op een labbank. Maar de manier waarop mensen duizenden keren per dag tikken, scrollen en pauzeren op hun smartphone vormt een doorlopend spoor van hoe het brein daadwerkelijk werkt in het dagelijks leven.",
+    whyBody2: "CODELAB leest dat spoor. Door smartphone-aanraakdata te combineren met neurale metingen — van hersenimplantaten tot EEG in het lab — ontdekken we patronen in veroudering, slaap en neurologische aandoeningen die geen enkel labbezoek ooit zou onthullen.",
+    whyStat1Desc: "internationale onderzoeks- en klinische partners in vijf landen, van Leiden tot Yale tot Tokio.",
+    whyStat2Desc: "spin-offbedrijven die rechtstreeks zijn voortgekomen uit ontdekkingen van CODELAB, opgericht in 2016 en 2024.",
+    whyPull: "\u201CEen tik op een scherm is iets kleins. Een miljoen ervan, verspreid over jaren, is een handtekening van het brein.\u201D",
+    whyLabHeader: "Traditionele labneurowetenschap",
+    whyFieldHeader: "De aanpak van CODELAB",
+    whyLab1: "Eén taak, één sessie",
+    whyLab2: "Minuten aan gedrag vastgelegd",
+    whyLab3: "Gedrag losgekoppeld van het dagelijks leven",
+    whyLab4: "Eén meting per bezoek",
+    whyField1: "Continue, alledaagse interactie",
+    whyField2: "Jaren aan gedrag vastgelegd",
+    whyField3: "Neurale en smartphonedata gecombineerd",
+    whyField4: "Miljoenen natuurlijke tikken en swipes",
+    timelineTitle: "Mijlpalen van<br>CODELAB",
+    tlText1: "WIRED bericht over het<br>door smartphones gevormde brein",
+    tlText2: "Eerste slaap-waakcycli<br>vastgelegd via smartphonetikken",
+    tlText3: "The Guardian noemt het veld<br>\u201Ctappigraphy\u201D",
+    tlText4: "AI traceert veroudering en<br>ziekte in aanraakpatronen",
+    tlText5: "Meerdaagse ritmes<br>ontdekt in smartphonegebruik",
+    tlEraToday: "Vandaag",
+    tlText6: "Hersenimplantaten en<br>smartphonedata gecombineerd",
+    tlEraFuture: "Toekomst",
+    tlText7: "Spin-offs brengen bevindingen<br>naar de kliniek",
+    tlLink: 'Bekijk onze methoden <span class="arrow">→</span>',
+    partnersLabel: "Partners",
+    partnersTitle: "Gebouwd op grensoverschrijdende samenwerking",
+    partnersLede: "Onze neurowetenschappelijke en klinische partners strekken zich uit over drie continenten — van Leidens eigen universitair ziekenhuis tot onderzoeksgroepen in de Verenigde Staten, Scandinavië, Zwitserland en Japan.",
+    partnersLogo1: "LUMC<br>Leiden",
+    partnersLogo2: "Yale School<br>of Medicine",
+    partnersLogo3: "Universiteit<br>Aarhus",
+    partnersLogo4: "Universiteit<br>Bern",
+    partnersLogo5: "CiNet<br>Japan",
+    partnersLogo6: "Kinderziekenhuis<br>Zürich",
+    partnersLogo7: "Universiteit<br>van Amsterdam",
+    partnersLogo8: "SEIN",
+    joinTitle: "Doe mee aan een onderzoek",
+    joinLede: "Draag een paar minuten per dag bij via je telefoon en help ons het dagelijks leven beter begrijpen."
+  }
+});
+</script>
 </body>
 </html>
