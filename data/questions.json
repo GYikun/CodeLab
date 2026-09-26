@@ -1,0 +1,62 @@
+[
+  {
+    "id": "brain-behaviour",
+    "short": {
+      "en": "Brain & behaviour",
+      "nl": "Brein & gedrag"
+    },
+    "question": {
+      "en": "How does the brain generate smartphone behaviour, and how does that behaviour shape the brain?",
+      "nl": "Hoe brengt het brein smartphonegedrag voort, en hoe vormt dat gedrag het brein?"
+    },
+    "answer": {
+      "en": "Nobody instructs you to reach for your phone. Your brain decides, hundreds of times a day. Neuroscience has long asked how the brain produces actions that arise from within, and how repeated use of the hand reshapes the brain that controls it. Smartphone use lets us put both questions to the test, with thousands of self-made movements recorded every day, for years.",
+      "nl": "Niemand zegt je dat je naar je telefoon moet grijpen. Je brein beslist, honderden keren per dag. De neurowetenschap vraagt zich al lang af hoe het brein handelingen voortbrengt die van binnenuit ontstaan, en hoe herhaald gebruik van de hand het brein dat haar aanstuurt opnieuw vormt. Smartphonegebruik stelt ons in staat beide vragen te toetsen, met duizenden zelfgekozen bewegingen die elke dag worden vastgelegd, jarenlang."
+    }
+  },
+  {
+    "id": "patterns-over-time",
+    "short": {
+      "en": "Patterns over time",
+      "nl": "Patronen in de tijd"
+    },
+    "question": {
+      "en": "How do complex patterns of behaviour build up in a single person over time?",
+      "nl": "Hoe bouwen complexe gedragspatronen zich in één persoon op door de tijd?"
+    },
+    "answer": {
+      "en": "Human activity comes in bursts rather than at a steady pace, and there is still no agreed account of why. There is also an old difficulty in psychology: an average taken across a hundred people may describe none of them. So we follow one person's behaviour without interruption, looking for the structure that appears only with length: rhythms running over several days, and patterns that surface across weeks, months and years.",
+      "nl": "Menselijke activiteit komt in uitbarstingen in plaats van in een gelijkmatig tempo, en er is nog steeds geen algemeen aanvaarde verklaring waarom. Daarnaast kent de psychologie een oud probleem: een gemiddelde over honderd mensen beschrijft misschien niemand van hen. Daarom volgen we het gedrag van één persoon zonder onderbreking, op zoek naar de structuur die pas met lengte zichtbaar wordt: ritmes die over meerdere dagen lopen, en patronen die over weken, maanden en jaren naar boven komen."
+    }
+  },
+  {
+    "id": "lifetime",
+    "short": {
+      "en": "Across a lifetime",
+      "nl": "Over de levensloop"
+    },
+    "question": {
+      "en": "How does smartphone behaviour change across a lifetime?",
+      "nl": "Hoe verandert smartphonegedrag in de loop van een leven?"
+    },
+    "answer": {
+      "en": "Does a young brain take on a new skill in the same way a mature one does? And when an older person slows, is that ageing itself, or the earliest sign of illness? These and many such questions can be unlocked using our measure which applies to a fifteen-year-old and to an eighty-year-old, so we can follow the whole path from youth through adulthood into old age without ever changing the instrument.",
+      "nl": "Leert een jong brein een nieuwe vaardigheid op dezelfde manier als een volwassen brein? En als een oudere trager wordt, is dat veroudering zelf, of het vroegste teken van ziekte? Deze en vele vergelijkbare vragen kunnen we beantwoorden met onze maat, die net zo goed werkt bij een vijftienjarige als bij een tachtigjarige. Zo kunnen we het hele pad volgen van jeugd via volwassenheid tot ouderdom, zonder ooit het meetinstrument te veranderen."
+    }
+  },
+  {
+    "id": "brain-disorders",
+    "short": {
+      "en": "Brain disorders",
+      "nl": "Hersenaandoeningen"
+    },
+    "question": {
+      "en": "What can smartphone behaviour reveal about disorders of the brain?",
+      "nl": "Wat kan smartphonegedrag onthullen over aandoeningen van het brein?"
+    },
+    "answer": {
+      "en": "Cognition is usually measured in a quiet room, over the course of an hour, and that measure is then asked to predict how a person manages a life. Closing this gap has been an ambition of clinical neuroscience for decades. We measure cognition as it unfolds in the ordinary world, and use it to build a new perspective on neurological illness.",
+      "nl": "Cognitie wordt meestal gemeten in een stille kamer, in de loop van een uur, en van die meting wordt dan verwacht dat ze voorspelt hoe iemand zijn leven redt. Die kloof dichten is al decennia een ambitie van de klinische neurowetenschap. Wij meten cognitie zoals die zich ontvouwt in de gewone wereld, en gebruiken dat om een nieuw perspectief op neurologische ziekten te ontwikkelen."
+    }
+  }
+]

@@ -10,8 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%231f5ae0'/></svg>">
 <link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/site-tweaks.css?v=5">
-<link rel="stylesheet" href="css/team.css?v=5">
 </head>
 <body>
 
@@ -24,16 +22,16 @@
     </a>
 
     <nav class="nav" id="primary-nav" aria-label="Primary">
-        <a href="index.html" data-i18n="navHome">Homepage</a>
-        <a href="methods.html" data-i18n="navMethods">Methods &amp; Discoveries</a>
-        <a href="questions.html" data-i18n="navQuestions">Research Questions</a>
-        <a href="index.html#partners" data-i18n="navPartners">Partners</a>
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="discoveries.html" data-i18n="navMethods">Discoveries</a>
+        <a href="questions.html" data-i18n="navQuestions">Questions</a>
+        <a href="partners.html" data-i18n="navPartners">Partners</a>
         <a href="team.html" class="is-active" data-i18n="navTeam">Team</a>
         <a href="resources.html" data-i18n="navResources">Resources</a>
       </nav>
 
     <div class="header-controls">
-      <a href="index.html#join" class="btn btn-primary btn-sm nav-cta" data-i18n="navJoin">Join a Study</a>
+      <a href="https://www.universiteitleiden.nl/en/staffmembers/arko-ghosh" class="btn btn-primary btn-sm nav-cta" data-i18n="navJoin">Join a Study</a>
 
       <div class="lang-switch" role="group" aria-label="Language">
         <button class="lang-btn is-active" data-lang="en" type="button">EN</button>
@@ -49,26 +47,12 @@
 
 <main>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
-  <div class="wrap">
-    <div class="breadcrumb reveal">
-      <a href="index.html" data-i18n="breadcrumbHome">Homepage</a>
-      <span>/</span>
-      <span data-i18n="navTeam">Team</span>
-    </div>
-    <h1 class="page-title reveal" data-delay="1" data-i18n="pageTitle">Team</h1>
-  </div>
-</section>
-
 <!-- CURRENT MEMBERS -->
 <section class="team-section">
   <div class="wrap">
 
-    <h2 class="team-subtitle reveal" data-i18n="staffTitle">Academic staff</h2>
     <div class="tmember-list" id="staffList"></div>
 
-    <h2 class="team-subtitle reveal" data-i18n="msTitle">MSc thesis students</h2>
     <div class="tmember-list" id="studentList"></div>
 
   </div>
@@ -89,19 +73,6 @@
   </div>
 </section>
 
-<!-- JOIN (Next action) -->
-<section class="join" id="join">
-  <div class="wrap">
-    <a class="join-cta" href="index.html#join">
-      <h2 class="join-title" data-i18n="joinTitle">Take part in a study</h2>
-      <span class="arrow" aria-hidden="true">&rarr;</span>
-    </a>
-    <p class="join-lede" data-i18n="joinLede">
-      Contribute a few minutes a day from your phone and help us understand everyday life.
-    </p>
-  </div>
-</section>
-
 </main>
 
 <footer class="site-footer">
@@ -114,15 +85,9 @@
   </div>
 </footer>
 
-<button class="chat-fab" id="chatFab" aria-label="Ask CodeLab">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-6.5A8 8 0 1 1 21 12z"/>
-  </svg>
-  <span data-i18n="chatLabel">Ask CodeLab</span>
-</button>
-
 <script src="js/main.js" charset="utf-8"></script>
-<script src="js/team.js?v=5" charset="utf-8"></script>
+<script src="js/data.js" charset="utf-8"></script>
+<script src="js/team.js?v=6" charset="utf-8"></script>
 <script>
 /* renderTeam() builds the member threads and returns the EN/NL strings
    for everything it generated. Merge them into the page dictionary so
@@ -130,7 +95,7 @@
 
    All non-ASCII text below is written as \uXXXX escapes on purpose, so
    this file survives being saved in any encoding. */
-/* Fail loudly if css/team.css is missing - without it the avatars
+/* Fail loudly if the team styles (in css/styles.css) are missing - without them the avatars
    expand and the whole card layout collapses, which is hard to
    diagnose from the page alone. */
 (function () {
@@ -142,29 +107,26 @@
   var loaded = getComputedStyle(probe).borderTopWidth !== '0px';
   probe.remove();
   if (!loaded) {
-    console.error('[CodeLab] css/team.css did not load. The team page ' +
+    console.error('[CodeLab] team styles did not load. The team page ' +
       'will render unstyled (oversized avatars, collapsed cards). ' +
-      'Check that css/team.css exists and the <link> tag path is correct.');
+      'Check that css/styles.css exists and the <link> tag path is correct.');
   }
 })();
 
-var threads = renderTeam();
-
-initSite({
-  en: Object.assign({
-    pageTitle: "Team",
-    staffTitle: "Academic staff",
-    msTitle: "MSc thesis students",
-    joinTitle: "Take part in a study",
-    joinLede: "Contribute a few minutes a day from your phone and help us understand everyday life."
-  }, threads.en),
-  nl: Object.assign({
-    pageTitle: "Team",
-    staffTitle: "Wetenschappelijk personeel",
-    msTitle: "Masterstudenten (scriptie)",
-    joinTitle: "Doe mee aan een onderzoek",
-    joinLede: "Draag een paar minuten per dag bij via je telefoon en help ons het dagelijks leven beter begrijpen."
-  }, threads.nl)
+/* Members come from data/team.json; their topic buttons use the short
+   names in data/questions.json. */
+CodeLabData.load(['team', 'questions']).then(function (data) {
+  var threads = { en: {}, nl: {} };
+  if (!data.team) {
+    CodeLabData.showError(document.getElementById('staffList'));
+    document.querySelector('.alumni-section').hidden = true;
+  } else {
+    threads = renderTeam(data.team, data.questions);
+  }
+  initSite({
+    en: Object.assign({}, threads.en),
+    nl: Object.assign({}, threads.nl)
+  });
 });
 </script>
 </body>

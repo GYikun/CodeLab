@@ -1,0 +1,25 @@
+# Documentation (kept locally, not published)
+*.md
+!README.md
+
+# Dev-only scripts, not used by any page
+# js/audit2.js 已经提交过，还会继续被上传。 .gitignore 管不到已经提交的文件。要停止跟踪它（本地文件保留，只从仓库里移除），需要运行 git rm --cached js/audit2.js 再提交。这会改动仓库，所以我没有执行；要我执行的话告诉我。
+js/audit2.js
+
+# macOS / Windows system files
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+
+# Editor settings
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local tools and logs
+node_modules/
+*.log
+.env
+.env.*

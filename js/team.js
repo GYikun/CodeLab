@@ -11,9 +11,11 @@
    GBK/Big5/Latin-1 they render as mojibake. Escapes cannot break.
 
    This file only OWNS the team page. It touches nothing in main.js and
-   exposes a single global: renderTeam(). Call it BEFORE initSite() and
-   merge the returned dictionaries into the page translations, so the
-   existing data-i18n machinery drives language switching for free.
+   exposes a single global: renderTeam(team, questions), taking the
+   contents of data/team.json and data/questions.json (needs js/data.js).
+   Call it BEFORE initSite() and merge the returned dictionaries into the
+   page translations, so the existing data-i18n machinery drives language
+   switching for free.
    ------------------------------------------------------------------ */
 (function (global) {
   'use strict';
@@ -21,28 +23,18 @@
   /* ==================================================================
      CONTENT
      ==================================================================
-     !! SAMPLE DATA - REPLACE BEFORE PUBLISHING !!
+     Members come from data/team.json (edited through Pages CMS, field
+     types in .pages.yml). toMembers() converts them to the shape the
+     renderer below uses:
 
-     Names, roles and links below come from the live site. The `events`
-     arrays are PLACEHOLDERS written to demonstrate the layout - apart
-     from Arko Ghosh's, which reuse milestones already published on the
-     homepage. Nothing here should be treated as biography. Each member
-     supplies their own list.
+       { id, name, roleKey, photo, href, linkKey, events }
+       event: { y, type: 'dot' | 'key', en: { l, t, b }, nl: { l, t, b } }
 
-     Event schema
-     ------------
-     { y: "2019",          // label shown under/next to the dot
-       type: "dot",        // "dot" = marker only, "key" = click to expand
-       en: { l, t, b },    // l = short label (2-5 words, ALWAYS)
-       nl: { l, t, b } }   //     t = detail title, b = detail body
-                           //     t and b are only read when type === "key"
-
-     Member schema
-     -------------
-     { id, name, roleKey, photo, href, linkKey, events }
-       roleKey  - reuses a key already defined in team.html translations
-       photo    - optional; falls back to the outline avatar if missing
-       href     - deep link to the member's research topic
+     Grouping: status "alumni" -> alumni panel; otherwise an English
+     role containing "MSc" -> students list; everyone else -> staff.
+     Timeline points are sorted oldest -> newest; points without a time
+     keep their order and go last. A point is clickable ('key') when it
+     has a detail text.
 
      Playback speed is FIXED site-wide at PLAY_SPEED. There is
      deliberately no per-member speed and no viewer-facing control.
@@ -50,292 +42,53 @@
 
   var PLAY_SPEED = 1.5;
 
-  var STAFF = [
-    {
-      id: 'arko-ghosh',
-      name: 'Arko Ghosh',
-      roleKey: 'roleGhosh',
-      photo: 'assets/img/team/arko-ghosh.jpg',
-      href: 'questions.html#q1',
-      linkKey: 'tmLinkQ1',
-      events: [
-        { y: '2014', type: 'key',
-          en: { l: 'WIRED covers the smartphone-shaped brain',
-                t: 'The smartphone-shaped brain reaches the public',
-                b: 'Early work showing that everyday touchscreen use leaves a measurable imprint on the sensory cortex. WIRED\u2019s coverage brought the idea out of the lab and started the conversation this group has been having ever since.' },
-          nl: { l: 'WIRED bericht over het door smartphones gevormde brein',
-                t: 'Het door smartphones gevormde brein bereikt het publiek',
-                b: 'Vroeg werk dat liet zien dat alledaags touchscreengebruik een meetbare afdruk achterlaat in de sensorische cortex. De berichtgeving van WIRED haalde het idee uit het lab en startte het gesprek dat deze groep sindsdien voert.' } },
-        { y: '2016', type: 'key',
-          en: { l: 'QuantActions AG founded',
-                t: 'First spin-off',
-                b: 'The first attempt to turn smartphone interaction data into a usable digital biomarker outside an academic setting.' },
-          nl: { l: 'QuantActions AG opgericht',
-                t: 'Eerste spin-off',
-                b: 'De eerste poging om smartphone-interactiedata om te zetten in een bruikbare digitale biomarker buiten een academische omgeving.' } },
-        { y: '2019', type: 'dot',
-          en: { l: 'Sleep-wake cycles read from taps' },
-          nl: { l: 'Slaap-waakcycli afgelezen uit tikken' } },
-        { y: '2021', type: 'dot',
-          en: { l: 'The Guardian names the field \u201Ctappigraphy\u201D' },
-          nl: { l: 'The Guardian noemt het veld \u201Ctappigraphy\u201D' } },
-        { y: '2023', type: 'dot',
-          en: { l: 'Multi-day rhythms found in phone use' },
-          nl: { l: 'Meerdaagse ritmes ontdekt in telefoongebruik' } },
-        { y: '2024', type: 'key',
-          en: { l: 'AXITE BV founded',
-                t: 'From discovery to the clinic',
-                b: 'A second spin-off, this time aimed squarely at clinical brain-health monitoring rather than general-purpose biomarkers.' },
-          nl: { l: 'AXITE BV opgericht',
-                t: 'Van ontdekking naar de kliniek',
-                b: 'Een tweede spin-off, ditmaal specifiek gericht op klinische monitoring van hersengezondheid in plaats van algemene biomarkers.' } }
-      ]
-    },
-    {
-      id: 'guido-band',
-      name: 'Guido Band',
-      roleKey: 'roleBand',
-      photo: 'assets/img/team/guido-band.jpg',
-      href: 'questions.html#q1',
-      linkKey: 'tmLinkQ1',
-      events: [
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Cognitive control and error monitoring' },
-          nl: { l: 'Cognitieve controle en foutmonitoring' } },
-        { y: '\u2014', type: 'key',
-          en: { l: 'Joins CODELAB as teaching-focused mentor',
-                t: 'Why a second mentor',
-                b: 'The group runs two senior mentors side by side \u2014 one for research, one for teaching \u2014 so that a first-year student and a postdoc can both find a way in.' },
-          nl: { l: 'Sluit zich aan bij CODELAB als onderwijsgerichte mentor',
-                t: 'Waarom een tweede mentor',
-                b: 'De groep werkt met twee senior mentoren naast elkaar \u2014 \u00e9\u00e9n voor onderzoek, \u00e9\u00e9n voor onderwijs \u2014 zodat zowel een eerstejaars als een postdoc een ingang vindt.' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Supervises first tappigraphy theses' },
-          nl: { l: 'Begeleidt eerste tappigraphy-scripties' } }
-      ]
-    },
-    {
-      id: 'khrystyna-semkiv',
-      name: 'Khrystyna Semkiv',
-      roleKey: 'rolePhd',
-      photo: 'assets/img/team/khrystyna-semkiv.jpg',
-      href: 'questions.html#q3',
-      linkKey: 'tmLinkQ3',
-      events: [
-        { y: '\u2014', type: 'dot',
-          en: { l: 'MSc in cognitive neuroscience' },
-          nl: { l: 'MSc in cognitieve neurowetenschap' } },
-        { y: '\u2014', type: 'key',
-          en: { l: 'Ballet years \u2014 measuring her own knee-jerk reflex',
-                t: 'Where the interest actually started',
-                b: 'Years of ballet training, and a stubborn curiosity about why the same reflex test gave different answers before and after rehearsal. Not a publication \u2014 but the reason the rest of this timeline exists.' },
-          nl: { l: 'Balletjaren \u2014 haar eigen kniepeesreflex meten',
-                t: 'Waar de interesse werkelijk begon',
-                b: 'Jarenlange balletopleiding, en een hardnekkige nieuwsgierigheid naar waarom dezelfde reflextest v\u00f3\u00f3r en n\u00e1 de repetitie andere antwoorden gaf. Geen publicatie \u2014 maar wel de reden dat de rest van deze tijdlijn bestaat.' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Starts PhD at CODELAB' },
-          nl: { l: 'Start promotieonderzoek bij CODELAB' } },
-        { y: '\u2014', type: 'key',
-          en: { l: 'First clinical data collection',
-                t: 'Working inside the clinic',
-                b: 'Collecting touchscreen data alongside clinical recordings means fitting research around care, not the other way round \u2014 the slowest and most instructive part of the project so far.' },
-          nl: { l: 'Eerste klinische dataverzameling',
-                t: 'Werken binnen de kliniek',
-                b: 'Touchscreendata verzamelen naast klinische metingen betekent onderzoek inpassen rond de zorg, niet andersom \u2014 tot nu toe het traagste en leerzaamste deel van het project.' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Thesis in progress' },
-          nl: { l: 'Proefschrift in wording' } }
-      ]
-    },
-    {
-      id: 'wenyu-wan',
-      name: 'Wenyu Wan',
-      roleKey: 'roleGuest',
-      photo: 'assets/img/team/wenyu-wan.jpg',
-      href: 'questions.html#q2',
-      linkKey: 'tmLinkQ2',
-      events: [
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Background in ageing research' },
-          nl: { l: 'Achtergrond in ouderdomsonderzoek' } },
-        { y: '\u2014', type: 'key',
-          en: { l: 'Joins CODELAB as guest researcher',
-                t: 'A visiting perspective',
-                b: 'Guest researchers bring methods the group does not already own. Placeholder text \u2014 replace with the visit\u2019s actual focus.' },
-          nl: { l: 'Sluit zich aan bij CODELAB als gastonderzoeker',
-                t: 'Een blik van buiten',
-                b: 'Gastonderzoekers brengen methoden mee die de groep nog niet in huis heeft. Plaatsaanduiding \u2014 vervang door de werkelijke focus van het bezoek.' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Behavioural-age modelling' },
-          nl: { l: 'Modellering van gedragsleeftijd' } }
-      ]
-    },
-    {
-      id: 'ruchella-kock',
-      name: 'Ruchella Kock',
-      roleKey: 'roleGuest',
-      photo: 'assets/img/team/ruchella-kock.jpg',
-      href: 'questions.html#q5',
-      linkKey: 'tmLinkQ5',
-      events: [
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Time-series methods' },
-          nl: { l: 'Tijdreeksmethoden' } },
-        { y: '\u2014', type: 'key',
-          en: { l: 'Hidden rhythms in everyday behaviour',
-                t: 'Looking past the 24-hour day',
-                b: 'Most behavioural work stops at the daily cycle. Placeholder text \u2014 replace with a short account of the multi-day rhythm work.' },
-          nl: { l: 'Verborgen ritmes in alledaags gedrag',
-                t: 'Voorbij de 24-uursdag kijken',
-                b: 'Het meeste gedragsonderzoek stopt bij de dagelijkse cyclus. Plaatsaanduiding \u2014 vervang door een korte beschrijving van het meerdaagse-ritmeonderzoek.' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Guest researcher at CODELAB' },
-          nl: { l: 'Gastonderzoeker bij CODELAB' } }
-      ]
-    },
-    {
-      id: 'fleur-van-der-laan',
-      name: 'Fleur van der Laan',
-      roleKey: 'roleLaan',
-      photo: 'assets/img/team/fleur-van-der-laan.jpg',
-      href: 'questions.html#q6',
-      linkKey: 'tmLinkQ6',
-      events: [
-        { y: '\u2014', type: 'dot',
-          en: { l: 'BSc psychology, Leiden' },
-          nl: { l: 'BSc psychologie, Leiden' } },
-        { y: '\u2014', type: 'key',
-          en: { l: 'Runs participant recruitment',
-                t: 'The people behind the data',
-                b: 'Every tap in the dataset belongs to someone who agreed to share it. Placeholder text \u2014 replace with a note on how recruitment and consent actually run.' },
-          nl: { l: 'Verzorgt de werving van deelnemers',
-                t: 'De mensen achter de data',
-                b: 'Elke tik in de dataset is van iemand die ermee instemde die te delen. Plaatsaanduiding \u2014 vervang door een notitie over hoe werving en toestemming werkelijk verlopen.' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Education and research assistant' },
-          nl: { l: 'Onderwijs- en onderzoeksassistent' } }
-      ]
-    },
-    {
-      id: 'sezin-mumcu',
-      name: 'Sezin Mumcu',
-      roleKey: 'roleMember',
-      photo: 'assets/img/team/sezin-mumcu.jpg',
-      href: 'questions.html#q4',
-      linkKey: 'tmLinkQ4',
-      events: [
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Joins the group' },
-          nl: { l: 'Sluit zich aan bij de groep' } },
-        { y: '\u2014', type: 'key',
-          en: { l: 'Sleep and wearable data',
-                t: 'Two instruments, one night',
-                b: 'Placeholder text \u2014 replace with a short account of combining wearables with touchscreen activity.' },
-          nl: { l: 'Slaap- en wearabledata',
-                t: 'Twee instrumenten, \u00e9\u00e9n nacht',
-                b: 'Plaatsaanduiding \u2014 vervang door een korte beschrijving van het combineren van wearables met touchscreenactiviteit.' } }
-      ]
-    }
-  ];
+  function toMembers(team, questions) {
+    var D = global.CodeLabData;
+    var groups = { staff: [], students: [], alumni: [] };
+    var topics = {};
+    (questions || []).forEach(function (q) { topics[q.id] = q; });
 
-  var STUDENTS = [
-    {
-      id: 'david-hof',
-      name: 'David Hof',
-      roleKey: 'roleMsc',
-      photo: 'assets/img/team/david-hof.jpg',
-      href: 'questions.html#q5',
-      linkKey: 'tmLinkQ5',
-      events: [
-        { y: '\u2014', type: 'dot',
-          en: { l: 'BSc psychology' },
-          nl: { l: 'BSc psychologie' } },
-        { y: '\u2014', type: 'key',
-          en: { l: 'MSc thesis: rhythms in phone use',
-                t: 'The thesis question',
-                b: 'Placeholder text \u2014 replace with one or two sentences on what the thesis is actually asking.' },
-          nl: { l: 'MSc-scriptie: ritmes in telefoongebruik',
-                t: 'De scriptievraag',
-                b: 'Plaatsaanduiding \u2014 vervang door een of twee zinnen over wat de scriptie werkelijk onderzoekt.' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Defence expected' },
-          nl: { l: 'Verdediging verwacht' } }
-      ]
-    },
-    {
-      id: 'oyku-gurcan',
-      name: '\u00d6yk\u00fc G\u00fcrcan',
-      roleKey: 'roleMsc',
-      photo: 'assets/img/team/oyku-gurcan.jpg',
-      href: 'questions.html#q3',
-      linkKey: 'tmLinkQ3',
-      events: [
-        { y: '\u2014', type: 'dot',
-          en: { l: 'BSc psychology' },
-          nl: { l: 'BSc psychologie' } },
-        { y: '\u2014', type: 'key',
-          en: { l: 'MSc thesis: touch data and disease markers',
-                t: 'The thesis question',
-                b: 'Placeholder text \u2014 replace with one or two sentences on what the thesis is actually asking.' },
-          nl: { l: 'MSc-scriptie: aanraakdata en ziektemarkers',
-                t: 'De scriptievraag',
-                b: 'Plaatsaanduiding \u2014 vervang door een of twee zinnen over wat de scriptie werkelijk onderzoekt.' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Defence expected' },
-          nl: { l: 'Verdediging verwacht' } }
-      ]
-    }
-  ];
+    team.forEach(function (p) {
+      var roleKey = 'tm-' + p.id + '-role';
+      put(roleKey, D.esc(D.text(p.role, 'en')), D.esc(D.text(p.role, 'nl')));
 
-  /* Alumni use exactly the same card, thread, palette and layout as
-     current members. The only difference is a flat end cap instead of
-     an arrow, marking a finished project. These two entries are
-     deliberately generic so no real former member is described with
-     invented detail. Replace wholesale. */
-  var ALUMNI = [
-    {
-      id: 'alumnus-sample-01',
-      name: 'Sample Alumnus 01',
-      roleKey: 'roleAlumnus',
-      photo: 'assets/img/team/alumnus-sample-01.jpg',
-      href: 'questions.html#q2',
-      linkKey: 'tmLinkQ2',
-      events: [
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Joins as MSc student' },
-          nl: { l: 'Start als MSc-student' } },
-        { y: '\u2014', type: 'key',
-          en: { l: 'Thesis on ageing and touch dynamics',
-                t: 'What the project left behind',
-                b: 'Placeholder text \u2014 replace with the finished project and where the person went next.' },
-          nl: { l: 'Scriptie over veroudering en aanraakdynamiek',
-                t: 'Wat het project heeft nagelaten',
-                b: 'Plaatsaanduiding \u2014 vervang door het afgeronde project en waar de persoon daarna heen ging.' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Project complete \u2014 leaves the group' },
-          nl: { l: 'Project afgerond \u2014 verlaat de groep' } }
-      ]
-    },
-    {
-      id: 'alumnus-sample-02',
-      name: 'Sample Alumnus 02',
-      roleKey: 'roleAlumnus',
-      photo: 'assets/img/team/alumnus-sample-02.jpg',
-      href: 'questions.html#q4',
-      linkKey: 'tmLinkQ4',
-      events: [
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Joins as research assistant' },
-          nl: { l: 'Start als onderzoeksassistent' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Sleep data pipeline' },
-          nl: { l: 'Pijplijn voor slaapdata' } },
-        { y: '\u2014', type: 'dot',
-          en: { l: 'Project complete \u2014 leaves the group' },
-          nl: { l: 'Project afgerond \u2014 verlaat de groep' } }
-      ]
-    }
-  ];
+      /* research topic button: the question's short name, linking to its card */
+      var q = p.topic && topics[p.topic];
+      var linkKey = null;
+      if (q) {
+        linkKey = 'tm-topic-' + q.id;
+        put(linkKey,
+          D.esc(D.text(q.short, 'en')) + ' <span class="arrow">→</span>',
+          D.esc(D.text(q.short, 'nl')) + ' <span class="arrow">→</span>');
+      }
+
+      var points = D.sortByTime(p.timeline || [], function (ev) { return ev.time; }, 'asc');
+      var m = {
+        id: p.id,
+        name: p.name,
+        roleKey: roleKey,
+        photo: p.photo || '',
+        href: q ? 'questions.html#' + q.id : '',
+        linkKey: linkKey,
+        events: points.map(function (ev) {
+          var isKey = !!D.text(ev.detail, 'en');
+          function side(lang) {
+            return {
+              l: D.esc(D.text(ev.text, lang)),
+              t: D.esc(D.text(ev.detailTitle, lang) || D.text(ev.text, lang)),
+              b: D.esc(D.text(ev.detail, lang))
+            };
+          }
+          return { y: ev.time || '', type: isKey ? 'key' : 'dot', en: side('en'), nl: side('nl') };
+        })
+      };
+
+      if (p.status === 'alumni') groups.alumni.push(m);
+      else if (/MSc/.test(D.text(p.role, 'en'))) groups.students.push(m);
+      else groups.staff.push(m);
+    });
+    return groups;
+  }
 
   /* ==================================================================
      GEOMETRY
@@ -552,9 +305,11 @@
     replay.type = 'button';
     replay.setAttribute('data-i18n', 'tmReplay');
     replay.setAttribute('aria-label', 'Replay timeline');
-    var link = el('a', 'tmember-link', actions);
-    link.href = m.href;
-    link.setAttribute('data-i18n', m.linkKey);
+    if (m.href) {
+      var link = el('a', 'tmember-link', actions);
+      link.href = m.href;
+      link.setAttribute('data-i18n', m.linkKey);
+    }
 
     /* ---- stage: svg wave + absolutely positioned dots/labels ---- */
     var tl = el('div', 'tml', card);
@@ -832,7 +587,9 @@
     cards.forEach(function (c) { io.observe(c); });
   }
 
-  function renderTeam() {
+  function renderTeam(team, questions) {
+    var groups = toMembers(team, questions);
+    var STAFF = groups.staff, STUDENTS = groups.students, ALUMNI = groups.alumni;
     var live = [];
     live = live.concat(mount(STAFF, document.getElementById('staffList'), false));
     live = live.concat(mount(STUDENTS, document.getElementById('studentList'), false));
@@ -859,13 +616,6 @@
 
     put('tmMore', 'Read more', 'Lees meer');
     put('tmReplay', 'Replay', 'Opnieuw');
-    put('roleAlumnus', 'Alumnus \u00b7 project complete', 'Alumnus \u00b7 project afgerond');
-    put('tmLinkQ1', 'Brain &amp; touchscreen <span class="arrow">\u2192</span>', 'Brein &amp; touchscreen <span class="arrow">\u2192</span>');
-    put('tmLinkQ2', 'Ageing <span class="arrow">\u2192</span>', 'Veroudering <span class="arrow">\u2192</span>');
-    put('tmLinkQ3', 'Neurological disease <span class="arrow">\u2192</span>', 'Neurologische aandoeningen <span class="arrow">\u2192</span>');
-    put('tmLinkQ4', 'Sleep <span class="arrow">\u2192</span>', 'Slaap <span class="arrow">\u2192</span>');
-    put('tmLinkQ5', 'Hidden rhythms <span class="arrow">\u2192</span>', 'Verborgen ritmes <span class="arrow">\u2192</span>');
-    put('tmLinkQ6', 'Digital health tools <span class="arrow">\u2192</span>', 'Digitale gezondheidstools <span class="arrow">\u2192</span>');
     put('alumniOpen', 'Show alumni', 'Toon alumni');
     put('alumniClose', 'Hide alumni', 'Verberg alumni');
 

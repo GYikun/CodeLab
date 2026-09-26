@@ -1,6 +1,6 @@
 /* CodeLab — shared site behaviour and i18n
    Each page calls initSite(pageTranslations) with its own EN/NL content;
-   this file supplies the common nav/footer/chat strings and all the
+   this file supplies the common nav/footer strings and all the
    interactive wiring (mobile nav, scroll reveal, language switch, etc). */
 (function (global) {
   'use strict';
@@ -8,43 +8,31 @@
   var commonTranslations = {
     en: {
       brandSub: "Leiden University",
-      navHome: "Homepage",
-      navMethods: "Methods &amp; Discoveries",
-      navQuestions: "Research Questions",
+      navHome: "Home",
+      navMethods: "Discoveries",
+      navQuestions: "Questions",
       navPartners: "Partners",
       navTeam: "Team",
       navResources: "Resources",
       navJoin: "Join a Study",
       footerNote: "CODELAB, Leiden University. Wassenaarseweg 52, Leiden.",
-      chatLabel: "Ask CodeLab",
-      chatAlert: "Ask CodeLab — connect your chat panel in js/main.js.",
       navOpenMenu: "Open menu",
       navCloseMenu: "Close menu",
-      breadcrumbHome: "Homepage",
-      flowQuestion: "Question",
-      flowExplanation: "Explanation",
-      flowEvidence: "Evidence",
-      flowNext: "Next step"
+      dataLoadError: "Content could not be loaded."
     },
     nl: {
       brandSub: "Universiteit Leiden",
       navHome: "Home",
-      navMethods: "Methoden &amp; Bevindingen",
-      navQuestions: "Onderzoeksvragen",
+      navMethods: "Bevindingen",
+      navQuestions: "Vragen",
       navPartners: "Partners",
       navTeam: "Team",
       navResources: "Bronnen",
       navJoin: "Doe mee aan onderzoek",
       footerNote: "CODELAB, Universiteit Leiden. Wassenaarseweg 52, Leiden.",
-      chatLabel: "Vraag CodeLab",
-      chatAlert: "Vraag CodeLab — koppel hier je eigen chatpaneel (js/main.js).",
       navOpenMenu: "Menu openen",
       navCloseMenu: "Menu sluiten",
-      breadcrumbHome: "Home",
-      flowQuestion: "Vraag",
-      flowExplanation: "Uitleg",
-      flowEvidence: "Bewijs",
-      flowNext: "Volgende stap"
+      dataLoadError: "De inhoud kon niet worden geladen."
     }
   };
 
@@ -134,7 +122,7 @@
     }
 
     /* Nav active-section highlight (in-page anchors on the current page only) */
-    var navSectionIds = ['top', 'why', 'timeline', 'partners'];
+    var navSectionIds = ['top', 'timeline'];
     var sections = navSectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
     if (sections.length) {
       var links = new Map();
@@ -146,7 +134,8 @@
           entries.forEach(function (e) {
             if (!e.isIntersecting) return;
             links.forEach(function (l) { l.classList.remove('is-active'); });
-            var link = links.get(e.target.id);
+            // Sections without their own nav link (timeline) belong to Home
+            var link = links.get(e.target.id) || links.get('top');
             if (link) link.classList.add('is-active');
           });
         }, { threshold: 0.3 });
@@ -157,14 +146,6 @@
     /* Year */
     var y = document.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();
-
-    /* Chat FAB */
-    var fab = document.getElementById('chatFab');
-    if (fab) {
-      fab.addEventListener('click', function () {
-        alert(translations[currentLang].chatAlert);
-      });
-    }
   }
 
   global.initSite = initSite;

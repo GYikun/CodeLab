@@ -1,0 +1,92 @@
+[
+  {
+    "title": {
+      "en": "Touch dynamics reveal resilience in ageing",
+      "nl": "Aanraakdynamiek onthult veerkracht bij veroudering"
+    },
+    "summary": {
+      "en": "The rhythm of everyday taps and swipes stays remarkably stable as people age, exposing a form of behavioural resilience invisible to standard cognitive tests.",
+      "nl": "Het ritme van alledaagse tikken en swipes blijft opvallend stabiel naarmate mensen ouder worden — een vorm van gedragsveerkracht die onzichtbaar is voor standaard cognitieve tests."
+    },
+    "image": "",
+    "authors": "Ceolini, Ridderinkhof & Ghosh",
+    "journal": "PNAS",
+    "year": 2024,
+    "url": ""
+  },
+  {
+    "title": {
+      "en": "Multi-day rhythms hide in smartphone use",
+      "nl": "Meerdaagse ritmes verscholen in smartphonegebruik"
+    },
+    "summary": {
+      "en": "Smartphone behaviour follows shared rhythms that repeat across several days, not just within a single day — a pattern common across many users.",
+      "nl": "Smartphonegedrag volgt gedeelde ritmes die zich over meerdere dagen herhalen, niet alleen binnen één dag — een patroon dat bij veel gebruikers voorkomt."
+    },
+    "image": "",
+    "authors": "Ceolini & Ghosh",
+    "journal": "npj Digital Medicine",
+    "year": 2023,
+    "url": ""
+  },
+  {
+    "title": {
+      "en": "AI detects epilepsy from touch behaviour alone",
+      "nl": "AI herkent epilepsie enkel aan aanraakgedrag"
+    },
+    "summary": {
+      "en": "A neural network trained only on smartphone touchscreen behaviour can trace epileptiform activity, without any direct brain recording.",
+      "nl": "Een neuraal netwerk dat uitsluitend is getraind op smartphone-aanraakgedrag kan epileptiforme activiteit traceren, zonder directe hersenregistratie."
+    },
+    "image": "",
+    "authors": "Duckrow, Ceolini, Zaveri, Brooks & Ghosh",
+    "journal": "iScience",
+    "year": 2021,
+    "url": ""
+  },
+  {
+    "title": {
+      "en": "Smartphone data flags neurological disease",
+      "nl": "Smartphonedata signaleert neurologische aandoeningen"
+    },
+    "summary": {
+      "en": "A model of healthy ageing built from everyday smartphone interactions reveals an advanced “behavioural age” in people with neurological disease.",
+      "nl": "Een model van gezonde veroudering, gebouwd op alledaagse smartphone-interacties, onthult een gevorderde “gedragsleeftijd” bij mensen met een neurologische aandoening."
+    },
+    "image": "",
+    "authors": "Ceolini, Brunner, Bunschoten, Majoie, Thijs & Ghosh",
+    "journal": "iScience",
+    "year": 2022,
+    "url": ""
+  },
+  {
+    "title": {
+      "en": "Sleep behaviour has a stable, personal signature",
+      "nl": "Slaapgedrag heeft een stabiele, persoonlijke signatuur"
+    },
+    "summary": {
+      "en": "Combining wearables, phone use and self-reports uncovers trait-like patterns in nighttime sleep that stay stable across time for each person.",
+      "nl": "Het combineren van wearables, telefoongebruik en zelfrapportage onthult trait-achtige patronen in nachtelijke slaap die voor elk individu stabiel blijven over de tijd."
+    },
+    "image": "",
+    "authors": "Massar, Chua, Soon, Ng, Ong, Chee, Lee, Ghosh & Chee",
+    "journal": "npj Digital Medicine",
+    "year": 2021,
+    "url": ""
+  },
+  {
+    "title": {
+      "en": "Dopamine capacity mirrors social phone use",
+      "nl": "Dopaminecapaciteit weerspiegelt sociaal telefoongebruik"
+    },
+    "summary": {
+      "en": "The brain's striatal dopamine synthesis capacity is reflected in how socially active a person is on their smartphone.",
+      "nl": "De dopaminesynthesecapaciteit van het striatum wordt weerspiegeld in hoe sociaal actief iemand is op zijn smartphone."
+    },
+    "image": "",
+    "authors": "Westbrook, Ghosh, van den Bosch, Määttä, Hofmans & Cools",
+    "journal": "iScience",
+    "year": 2021,
+    "url": ""
+  }
+]

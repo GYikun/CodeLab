@@ -33,7 +33,7 @@ img, svg { display: block; max-width: 100% }
 a { color: inherit; text-decoration: none }
 h1, h2, h3, h4 { margin: 0; color: var(--ink) }
 p { margin: 0 }
-.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 40px }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 48px }
 .arrow { display: inline-block; transition: transform .25s var(--ease) }
 a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px }
@@ -46,10 +46,8 @@ a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
 }
 .btn-primary { background: var(--ink); color: #fff }
 .btn-primary:hover { background: var(--blue-700); box-shadow: 0 8px 20px rgba(18,60,158,.22) }
-.btn-ghost { background: #fff; color: var(--ink); border-color: var(--line) }
-.btn-ghost:hover { border-color: var(--blue); color: var(--blue) }
+
 .btn-sm { padding: 10px 20px; font-size: 14px }
-.btn-lg { padding: 16px 32px; font-size: 16px }
 
 /* ---- Header ---- */
 .site-header {
@@ -115,7 +113,7 @@ a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
   grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
   gap: clamp(8px, 1.2vw, 20px); align-items: center;
   min-height: calc(100vh - var(--nav-h));
-  padding: clamp(16px, 3vh, 40px) 0;
+  padding-block: clamp(16px, 3vh, 40px);
 }
 .hero-copy { position: relative; z-index: 2; display: flex; flex-direction: column }
 .hero-media {
@@ -131,7 +129,10 @@ a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
 @keyframes heroFade { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: none } }
 .hero-title {
   font-family: var(--serif); font-weight: 700;
-  font-size: clamp(44px, 4vw, 64px); line-height: 1.06; letter-spacing: -.02em;
+  /* Image beside the text: keep the fixed line breaks and scale the whole title with the screen.
+     4vw keeps the longest line (Dutch) inside the text column; 60px caps it once the column stops growing */
+  font-size: clamp(32px, 4vw, 60px); line-height: 1.06; letter-spacing: -.02em;
+  white-space: nowrap;
 }
 .hero-title em { font-style: normal; color: var(--blue) }
 .hero-lede { margin: clamp(16px, 2.4vh, 24px) 0 clamp(20px, 3vh, 30px); font-size: clamp(17px, 1.2vw, 19px); line-height: 1.6; max-width: 42ch; color: var(--text) }
@@ -144,79 +145,29 @@ a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
 .scroll-arrow { animation: arrowBounce 1.6s ease-in-out infinite }
 @keyframes arrowBounce { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(6px) } }
 
+/* ---- Data load error (js/data.js) ---- */
+.data-error { font-size: 14px; color: var(--text); padding: 12px 0 }
+
 /* ---- Shared section labels ---- */
-.section-label {
-  font-size: 12px; font-weight: 700; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--blue); margin-bottom: 14px
-}
+
 .section-title {
   font-family: var(--serif); font-size: clamp(28px, 2.6vw, 40px);
   font-weight: 600; line-height: 1.2; letter-spacing: -.015em
 }
-.section-lede {
-  font-size: 18px; line-height: 1.65; color: var(--text);
-  max-width: 60ch; margin-top: 14px
-}
-
-/* ---- Why Real-World Behaviour Matters ---- */
-.why { padding: 96px 0; background: var(--bg) }
-.why-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 64px 96px; align-items: start
-}
-.why-body {
-  font-size: 18px; line-height: 1.75; color: var(--text);
-  max-width: 44ch; margin-top: 20px
-}
-.why-body + .why-body { margin-top: 14px }
-.why-right { display: flex; flex-direction: column; gap: 24px; padding-top: 4px }
-.why-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px }
-.why-stat {
-  background: var(--bg-soft); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 28px 24px 22px
-}
-.why-stat-num {
-  font-family: var(--serif); font-size: 52px; font-weight: 700;
-  color: var(--ink); line-height: 1; letter-spacing: -.04em
-}
-.why-stat-num span { font-size: 30px; color: var(--blue) }
-.why-stat-desc { font-size: 14px; color: var(--text); line-height: 1.55; margin-top: 10px }
-.why-pull {
-  margin: 0; border-left: 3px solid var(--blue); padding-left: 22px;
-  font-family: var(--serif); font-size: 20px; line-height: 1.6; color: var(--ink); font-style: italic
-}
-.why-contrast {
-  background: var(--bg-soft); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 22px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 20px
-}
-.why-contrast-col h4 {
-  font-size: 12px; font-weight: 700; letter-spacing: .07em;
-  text-transform: uppercase; margin-bottom: 12px; color: var(--text)
-}
-.why-contrast-col ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px }
-.why-contrast-col li {
-  font-size: 14px; display: flex; align-items: flex-start;
-  gap: 8px; color: var(--text); line-height: 1.4
-}
-.why-contrast-col li::before {
-  content: ""; flex-shrink: 0; width: 6px; height: 6px;
-  border-radius: 50%; margin-top: 5px
-}
-.why-contrast-col.lab li::before { background: var(--line) }
-.why-contrast-col.field li::before { background: var(--blue) }
 
 /* ---- Timeline ---- */
 .timeline-band {
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
   padding: 44px 0 34px; background: #fff
 }
-.timeline-head { display: grid; grid-template-columns: 220px 1fr 40px; gap: 28px; align-items: start }
+.timeline-head { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 28px; align-items: start }
 .timeline-title { font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--ink) }
 .timeline-scroller { overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin }
 .timeline {
-  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(140px, 1fr);
-  gap: 16px; list-style: none; margin: 0; padding: 0; min-width: 900px
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(132px, 1fr);
+  gap: 16px; list-style: none; margin: 0; padding: 0;
+  /* --count = number of milestones (set by index.html); keeps list and axis the same width */
+  min-width: calc(var(--count, 7) * 132px + (var(--count, 7) - 1) * 16px)
 }
 .tl-item {
   display: grid; grid-template-columns: 34px 1fr;
@@ -234,21 +185,19 @@ a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
 .tl-text { font-size: 12px; line-height: 1.35; color: var(--text) }
 .tl-now .tl-era { color: var(--blue) }
 .tl-now .tl-icon { background: var(--blue-100) }
-.tl-axis { position: relative; height: 20px; margin-top: 14px; min-width: 900px }
+.tl-axis { position: relative; height: 20px; margin-top: 14px; min-width: calc(var(--count, 7) * 132px + (var(--count, 7) - 1) * 16px) }
 .tl-line { position: absolute; left: 0; right: 0; top: 9px; height: 2px; background: var(--line) }
 .tl-dot {
   position: absolute; top: 4px; width: 12px; height: 12px; border-radius: 50%;
   background: #fff; border: 2.5px solid var(--blue);
-  left: calc((100% - 12px) * var(--i) / 6)
+  left: calc((100% - 12px) * var(--i) / max(var(--count, 7) - 1, 1))
 }
-.tl-dot-green { border-color: var(--green) }
+
 .tl-dot-amber { border-color: var(--amber) }
-.tl-next { align-self: center; color: var(--blue); font-size: 20px; justify-self: end }
-.tl-link { display: block; text-align: center; margin-top: 26px; color: var(--blue); font-size: 15px; font-weight: 500 }
 
 /* ---- Partners ---- */
 .partners { padding: 96px 0; border-top: 1px solid var(--line) }
-.partners-grid { display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: start }
+
 .partner-logos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 48px }
 .partner-logo {
   height: 64px; display: grid; place-items: center;
@@ -256,24 +205,6 @@ a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
   border-radius: var(--radius); font-size: 13px; font-weight: 600;
   color: var(--text); text-align: center; padding: 0 16px; line-height: 1.4
 }
-
-/* ---- Join ---- */
-.join { background: var(--ink); color: #cfdcf3; padding: clamp(18px, 2.6vh, 26px) 0; text-align: center }
-.join-cta {
-  position: relative; display: inline-flex; align-items: center; gap: 12px;
-  text-decoration: none; cursor: pointer; margin-bottom: 6px; padding-bottom: 4px
-}
-.join-cta::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
-  background: #fff; transform: scaleX(0); transform-origin: left;
-  transition: transform .3s var(--ease)
-}
-.join-cta:hover::after, .join-cta:focus-visible::after { transform: scaleX(1) }
-.join-cta .arrow { color: #fff; font-size: 26px; line-height: 1; transition: transform .25s var(--ease), color .2s var(--ease) }
-.join-cta:hover .join-title, .join-cta:focus-visible .join-title,
-.join-cta:hover .arrow, .join-cta:focus-visible .arrow { color: var(--blue-100) }
-.join-title { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 36px); color: #fff; margin: 0; transition: color .2s var(--ease) }
-.join-lede { max-width: 64ch; margin: 0 auto; font-size: 16px; line-height: 1.5; white-space: nowrap }
 
 /* ---- Footer ---- */
 .site-footer { border-top: 1px solid var(--line); padding: 36px 0; background: #fff }
@@ -284,111 +215,22 @@ a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
 .site-footer nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 14px }
 .site-footer nav a:hover { color: var(--blue) }
 .footer-note { font-size: 13px; margin: 0 }
-.chat-fab {
-  position: fixed; right: 24px; bottom: 24px; z-index: 60;
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 14px 22px; border: 0; border-radius: 999px; cursor: pointer;
-  background: var(--ink); color: #fff; font-family: var(--sans); font-size: 15px; font-weight: 500;
-  box-shadow: 0 10px 26px rgba(11,43,92,.28);
-  transition: transform .25s var(--ease), background .25s var(--ease)
-}
-.chat-fab:hover { transform: translateY(-3px); background: var(--blue) }
-.chat-fab svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round }
 
 /* ---- Page hero (sub-pages) ---- */
-.page-hero { padding: 56px 0 64px; border-bottom: 1px solid var(--line) }
-.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text); margin-bottom: 24px }
-.breadcrumb a { color: var(--text) }
-.breadcrumb a:hover { color: var(--blue) }
-.breadcrumb span { color: var(--blue-100) }
-.page-title {
-  font-family: var(--serif); font-weight: 700; font-size: clamp(32px, 3.2vw, 40px);
-  line-height: 1.15; letter-spacing: -.015em; max-width: 20ch
-}
-.page-lede { margin-top: 22px; font-size: 18px; line-height: 1.7; color: var(--text); max-width: 68ch }
 
 /* Compact page-hero variant: title only, minimal whitespace (used on Team page) */
-.page-hero-compact { padding: 40px 0 32px }
-.page-hero-compact .breadcrumb { margin-bottom: 16px }
-.page-hero-compact .page-title { margin-bottom: 0 }
-
-/* ---- Behaviour Thread flow indicator (Question -> Explanation -> Evidence -> Next) ---- */
-.flow-thread {
-  position: relative; display: flex; justify-content: space-between;
-  max-width: 640px; margin-top: 48px
-}
-.flow-thread::before {
-  content: ""; position: absolute; top: 6px; left: 6px; right: 6px; height: 2px;
-  background: var(--line); z-index: 0
-}
-.flow-thread::after {
-  content: ""; position: absolute; top: 6px; left: 6px; height: 2px;
-  width: calc(100% - 12px); background: var(--blue); z-index: 1;
-  transform: scaleX(0); transform-origin: left;
-  animation: flowDraw 1.3s var(--ease) .3s forwards
-}
-@keyframes flowDraw { to { transform: scaleX(1) } }
-.flow-step { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1 }
-.flow-step:first-child { align-items: flex-start }
-.flow-step:last-child { align-items: flex-end }
-.flow-dot { width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--blue) }
-.flow-label { font-size: 12px; color: var(--text); text-align: center }
-.flow-step:first-child .flow-label { text-align: left }
-.flow-step:last-child .flow-label { text-align: right }
-
-/* ---- Method cards (Methods & Discoveries page) ---- */
-.methods-section { padding: 72px 0 }
-.methods-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px }
-.method-card {
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 36px 26px 26px; display: flex; flex-direction: column; gap: 16px;
-  position: relative; overflow: hidden;
-  transition: box-shadow .3s var(--ease), transform .3s var(--ease)
-}
-.method-card:hover { box-shadow: 0 16px 40px rgba(11,43,92,.1); transform: translateY(-4px) }
-.method-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px }
-.method-card.tap::before    { background: var(--blue) }
-.method-card.neural::before { background: var(--green) }
-.method-card.model::before  { background: var(--amber) }
-.method-num {
-  font-family: var(--serif); font-size: 40px; font-weight: 700;
-  color: var(--blue-100); line-height: 1; user-select: none
-}
-.method-card.neural .method-num { color: #C8E6D0 }
-.method-card.model  .method-num { color: #FDEDC8 }
-.method-icon {
-  width: 44px; height: 44px; display: grid; place-items: center;
-  border-radius: 10px; background: var(--blue-050)
-}
-.method-card.neural .method-icon { background: #E8F5EC }
-.method-card.model  .method-icon { background: #FEF6E4 }
-.method-icon svg {
-  width: 24px; height: 24px; fill: none; stroke: var(--blue);
-  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round
-}
-.method-card.neural .method-icon svg { stroke: var(--green) }
-.method-card.model  .method-icon svg { stroke: var(--amber) }
-.method-name { font-size: 18px; font-weight: 600; color: var(--ink); line-height: 1.3 }
-.method-desc { font-size: 15px; color: var(--text); line-height: 1.65; flex: 1 }
-.method-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto }
-.method-tag {
-  font-size: 12px; font-weight: 500; padding: 4px 10px;
-  border-radius: 99px; background: var(--blue-050); color: var(--blue)
-}
-.method-card.neural .method-tag { background: #E8F5EC; color: #2E7D50 }
-.method-card.model  .method-tag { background: #FEF6E4; color: #9A6A00 }
 
 /* ---- Discoveries (list of findings, used on Methods page) ---- */
-.discoveries-section { padding: 0 0 88px; background: var(--bg-soft) }
-.discoveries-section .section-title { margin-bottom: 8px }
-.discovery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px }
+.discoveries-section { padding: 32px 0 88px }
+.discovery-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px }
 .discovery-item {
-  display: grid; grid-template-columns: 52px 1fr; gap: 16px;
-  padding: 22px; background: #fff; border: 1px solid var(--line);
+  display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 16px;
+  padding: 22px; background: #fff; border: 1px solid #D5DEEC;
   border-radius: var(--radius); align-items: start;
-  transition: box-shadow .25s var(--ease)
+  box-shadow: 0 1px 2px rgba(11,43,92,.06), 0 4px 14px rgba(11,43,92,.06);
+  transition: box-shadow .25s var(--ease), border-color .25s var(--ease)
 }
-.discovery-item:hover { box-shadow: 0 8px 24px rgba(11,43,92,.08) }
+.discovery-item:hover { border-color: var(--blue-100); box-shadow: 0 2px 4px rgba(11,43,92,.06), 0 12px 28px rgba(11,43,92,.12) }
 .discovery-icon {
   width: 52px; height: 52px; display: grid; place-items: center;
   border-radius: 11px; background: var(--blue-050)
@@ -397,20 +239,28 @@ a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
   width: 24px; height: 24px; fill: none; stroke: var(--blue);
   stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round
 }
-.discovery-name { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.35 }
+.discovery-name { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.35; overflow-wrap: break-word }
+/* Paper link on the title, and an optional image/GIF in place of the icon */
+.discovery-link { color: inherit }
+.discovery-link:hover { color: var(--blue); text-decoration: underline; text-underline-offset: 3px }
+.discovery-item.has-image { grid-template-columns: 180px minmax(0, 1fr); gap: 20px }
+.discovery-media { border-radius: 8px; overflow: hidden; background: var(--blue-050) }
+.discovery-media img { display: block; width: 100%; height: auto }
 .discovery-desc { font-size: 14px; color: var(--text); line-height: 1.55 }
 .discovery-cite { display: block; font-size: 15px; color: var(--text); margin-top: 8px; opacity: .75 }
 
 /* ---- Question cards (Research Questions page) ---- */
-.questions-section { padding: 72px 0 }
-.question-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px }
+.questions-section { padding: 32px 0 72px }
+.question-grid { display: grid; grid-template-columns: 1fr; gap: 20px }
 .question-card {
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 30px 26px; display: flex; flex-direction: column; gap: 16px;
+  background: #fff; border: 1px solid #D5DEEC; border-radius: var(--radius);
+  padding: 28px 26px; display: grid; grid-template-columns: 48px 1fr; gap: 10px 20px; align-items: start;
+  box-shadow: 0 1px 2px rgba(11,43,92,.06), 0 4px 14px rgba(11,43,92,.06);
   transition: box-shadow .3s var(--ease), transform .3s var(--ease)
 }
 .question-card:hover { box-shadow: 0 16px 34px rgba(11,43,92,.11); transform: translateY(-5px) }
 .question-icon {
+  grid-row: 1 / span 2;
   width: 48px; height: 48px; display: grid; place-items: center;
   border-radius: 11px; background: var(--blue-050)
 }
@@ -419,51 +269,33 @@ a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
   stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round
 }
 .question-name { font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.4 }
-.question-desc { font-size: 14px; color: var(--text); line-height: 1.6; flex: 1 }
+.question-desc { font-size: 14px; color: var(--text); line-height: 1.6 }
 
 /* ---- Team cards (Team page) ---- */
 .team-section { padding: 56px 0 72px }
-.team-subtitle {
-  font-family: var(--serif); font-size: 28px; font-weight: 600;
-  color: var(--ink); margin: 56px 0 24px
-}
-.team-subtitle:first-of-type { margin-top: 0 }
-.team-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px }
-.team-card {
-  display: flex; flex-direction: column; align-items: center; text-align: center;
-  gap: 10px; text-decoration: none;
-  padding: 32px 22px 26px; border: 1px solid var(--line); border-radius: var(--radius);
-  transition: box-shadow .25s var(--ease), transform .25s var(--ease)
-}
-a.team-card:hover { box-shadow: 0 12px 28px rgba(11,43,92,.1); transform: translateY(-3px) }
-.team-photo {
-  width: 88px; height: 88px; border-radius: 50%;
-  background: var(--blue-100); display: grid; place-items: center;
-  overflow: hidden; flex-shrink: 0
-}
-.team-photo img { width: 100%; height: 100%; object-fit: cover }
-.team-photo svg { width: 40px; height: 40px; fill: none; stroke: var(--blue); stroke-width: 1.4; stroke-linecap: round }
-.team-name { font-size: 16px; font-weight: 600; color: var(--ink) }
-.team-role-tag {
-  display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .01em;
-  color: #fff; background: var(--ink); border-radius: 999px; padding: 5px 14px; line-height: 1.3
-}
-.team-bio { font-size: 14px; color: var(--text); line-height: 1.55; margin-top: 2px }
-.team-students { display: flex; flex-wrap: wrap; gap: 10px }
-.team-student-chip {
-  font-size: 14px; color: var(--ink); background: var(--bg-soft);
-  border: 1px solid var(--line); border-radius: 99px; padding: 8px 18px
-}
 
 /* ---- Resource cards (Resources page) ---- */
-.resources-section { padding: 72px 0 }
+.resources-section { padding: 32px 0 72px }
 .resource-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px }
 .resource-card {
-  border: 1px solid var(--line); border-radius: var(--radius); padding: 28px;
-  display: flex; flex-direction: column; gap: 10px; transition: box-shadow .25s var(--ease);
-  text-decoration: none
+  background: #fff; border: 1px solid #D5DEEC; border-radius: var(--radius); padding: 28px;
+  display: flex; flex-direction: column; gap: 10px; text-decoration: none;
+  box-shadow: 0 1px 2px rgba(11,43,92,.06), 0 4px 14px rgba(11,43,92,.06);
+  transition: box-shadow .25s var(--ease), border-color .25s var(--ease)
 }
-.resource-card:hover { box-shadow: 0 8px 24px rgba(11,43,92,.08) }
+.resource-card:hover { border-color: var(--blue-100); box-shadow: 0 2px 4px rgba(11,43,92,.06), 0 12px 28px rgba(11,43,92,.12) }
+.res-block + .res-block { margin-top: 56px; padding-top: 48px; border-top: 1px solid var(--line) }
+.res-head { display: flex; align-items: center; gap: 16px; margin-bottom: 24px }
+.res-icon {
+  flex-shrink: 0; width: 52px; height: 52px; display: grid; place-items: center;
+  border-radius: 12px; background: var(--blue-050)
+}
+.res-icon svg {
+  width: 26px; height: 26px; fill: none; stroke: var(--blue);
+  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round
+}
+.res-title { font-family: var(--serif); font-size: clamp(24px, 2vw, 30px); font-weight: 600; color: var(--ink); line-height: 1.2 }
+.res-sub { font-size: 15px; color: var(--text); margin-top: 4px }
 .resource-type { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue) }
 .resource-name { font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.3 }
 .resource-desc { font-size: 14px; color: var(--text); line-height: 1.55; flex: 1 }
@@ -481,9 +313,9 @@ a.team-card:hover { box-shadow: 0 12px 28px rgba(11,43,92,.1); transform: transl
 
 /* ---- Responsive ---- */
 @media (max-width: 1180px) {
-  .wrap { padding: 0 28px }
-  .methods-grid, .question-grid { grid-template-columns: repeat(2, 1fr) }
-  .team-cards { grid-template-columns: repeat(3, 1fr) }
+  .wrap { padding: 0 32px }
+  
+  
   .partner-logos { grid-template-columns: repeat(3, 1fr) }
 }
 @media (max-width: 960px) {
@@ -491,80 +323,73 @@ a.team-card:hover { box-shadow: 0 12px 28px rgba(11,43,92,.1); transform: transl
     position: absolute; left: 0; right: 0; top: 100%;
     flex-direction: column; align-items: flex-start; gap: 0;
     background: #fff; border-top: 1px solid var(--line);
-    padding: 10px 28px 22px; display: none
+    padding: 10px 32px 22px; display: none
   }
   .nav.is-open { display: flex }
   .nav a { width: 100%; padding: 14px 0; border-bottom: 1px solid var(--line); white-space: normal }
+  /* Full-width rows: underline the label text only, not the whole row */
+  .nav a.is-active::after { display: none }
+  .nav a.is-active { text-decoration: underline 2px var(--blue); text-underline-offset: 6px }
   .nav-toggle { display: block }
-  .why-grid, .partners-grid { grid-template-columns: 1fr }
+  
   .timeline-head { grid-template-columns: 1fr; gap: 18px }
-  .tl-next { display: none }
-  .discovery-grid { grid-template-columns: 1fr }
 }
 @media (max-width: 1024px) {
   .hero-inner {
     grid-template-columns: 1fr; gap: clamp(20px, 4vw, 32px);
-    min-height: 0; padding: clamp(24px, 5vh, 48px) 0;
+    min-height: 0; padding-block: clamp(24px, 5vh, 48px);
   }
   .hero-copy { align-items: flex-start }
   .hero-media { justify-self: center; width: 100%; max-width: 660px; transform: none; z-index: auto }
+  /* Image moves below the text: drop the fixed line breaks and let the text wrap to the width */
+  .hero-title { font-size: clamp(36px, 5.2vw, 48px); white-space: normal }
+  .hero-title br { display: none }
+  .hero-lede { max-width: 62ch }
 }
 @media (max-width: 640px) {
-  .wrap { padding: 0 20px }
+  .wrap { padding: 0 24px }
+  .nav { padding-left: 24px; padding-right: 24px }
   .hero-actions .btn { flex: 1; justify-content: center }
   .partner-logos { grid-template-columns: repeat(2, 1fr) }
-  .why-stat-row, .why-contrast { grid-template-columns: 1fr }
-  .chat-fab span { display: none }
-  .chat-fab { padding: 16px }
+  
+  
+  
   .header-controls { gap: 12px }
-  .join-lede { white-space: normal }
-  .methods-grid, .question-grid, .resource-grid { grid-template-columns: 1fr }
-  .team-cards { grid-template-columns: repeat(2, 1fr) }
+  
+   .resource-grid { grid-template-columns: 1fr }
+  
+}
+@media (max-width: 440px) {
+  /* Keep brand + CTA + language switch + menu button on one row on phones */
+  .wrap { padding: 0 20px }
+  .header-inner { gap: 8px }
+  .header-controls { gap: 6px }
+  .brand-name { font-size: 21px }
+  .brand-sub { font-size: 9.5px; letter-spacing: .02em }
+  /* long labels (e.g. Dutch) wrap onto two lines instead of pushing the menu button off-screen */
+  .nav-cta { padding: 6px 11px; font-size: 12px; white-space: normal; max-width: 8.5em; text-align: center; line-height: 1.2 }
+  .lang-btn { padding: 5px 8px; font-size: 11px }
+  .nav-toggle { width: 38px; padding: 8px 6px }
+  .nav { padding-left: 20px; padding-right: 20px }
+  .discovery-item { grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 18px }
+  .discovery-icon { width: 40px; height: 40px }
+  .discovery-item.has-image { grid-template-columns: minmax(0, 1fr); gap: 14px }
+}
+@media (max-width: 360px) {
+  .header-inner { gap: 6px }
+  .header-controls { gap: 4px }
+  .brand-name { font-size: 19px }
+  .brand-sub { font-size: 8.5px; letter-spacing: 0 }
+  .nav-cta { padding: 6px 7px; font-size: 11px; max-width: 7.6em }
+  .lang-switch { padding: 2px }
+  .lang-btn { padding: 4px 4px }
+  .nav-toggle { width: 30px; padding: 8px 3px }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important }
   .reveal { opacity: 1; transform: none }
-  .flow-thread::after { transform: scaleX(1) }
   html { scroll-behavior: auto }
 }
-
-/* ==========================================================
-   CodeLab - site tweaks  (css/site-tweaks.css)
-   ----------------------------------------------------------
-   Small corrections that apply to EVERY sub-page. Load it
-   AFTER css/styles.css so these rules win:
-
-       <link rel="stylesheet" href="css/styles.css">
-       <link rel="stylesheet" href="css/site-tweaks.css">
-
-   Add that one line to methods.html, questions.html,
-   resources.html and team.html. index.html has no breadcrumb
-   or page hero, so it does not need it (adding it is harmless).
-
-   These override rules in styles.css rather than editing it,
-   so styles.css stays untouched and upgradable.
-   ASCII only - no literal non-ASCII characters in this file.
-   ========================================================== */
-
-/* ---- Breadcrumb ----------------------------------------
-   styles.css sets `.breadcrumb span { color: var(--blue-100) }`,
-   which is a pale tint meant for the separator but which also
-   catches the current page name - so "Team" rendered almost
-   invisible next to "Homepage". Both now read at normal
-   strength, which is the usual breadcrumb convention.
-   -------------------------------------------------------- */
-.breadcrumb span { color: var(--text) }
-.breadcrumb { margin-bottom: 16px }
-.page-title { margin-bottom: 0 }
-
-/* ---- Page hero spacing ---------------------------------
-   styles.css opens the sub-page hero with 56px of padding,
-   which pushed the breadcrumb far below the header, and closed
-   with 64px, which left a wide empty band above the first
-   section. 24px both ends is the conventional distance and
-   stays on the 8pt rhythm.
-   -------------------------------------------------------- */
-.page-hero { padding: 24px 0 24px }
 
 /* ==========================================================
    CodeLab - Team page timelines  (css/team.css)
@@ -729,8 +554,6 @@ button.tml-label:hover .tml-more { text-decoration: underline }
 
 /* ---- section rhythm (item 3: much less whitespace) ---- */
 .team-section { padding: 32px 0 24px }
-.team-subtitle { margin: 32px 0 16px }
-.team-subtitle:first-of-type { margin-top: 0 }
 
 /* ---- alumni: identical card, collapsed by default, page foot ---- */
 .alumni-section { padding: 0 0 48px }
@@ -759,11 +582,65 @@ button.tml-label:hover .tml-more { text-decoration: underline }
   .tmember { padding: 16px }
   .tmember-head { grid-template-columns: 40px 1fr; row-gap: 10px }
   .tmember-photo { width: 40px; height: 40px }
-  .tmember-actions { grid-column: 1 / -1; justify-self: start }
+  .tmember-actions { grid-column: 1 / -1; justify-self: start; flex-wrap: wrap; max-width: 100% }
+  .tmember-link { white-space: normal }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .tml-path { stroke-dashoffset: 0 }
   .tml-dot, .tml-label, .tml-cap, .tml-tail { opacity: 1 }
   .tml-mark { transform: scale(1) }
+}
+
+/* ---- Partners page: bubble clusters ---- */
+.partners-page { padding: 32px 0 96px }
+.partners-intro { text-align: center; margin: 0 auto 56px }
+.bubble-group + .bubble-group { margin-top: 64px; padding-top: 56px; border-top: 1px solid var(--line) }
+.bubble-group-title {
+  text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 28px
+}
+.bubble-cluster {
+  --d: 168px;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 18px 22px; max-width: 1100px; margin: 0 auto
+}
+.bubble-cluster[data-size="lg"] { --d: 196px }
+.bubble-cluster[data-size="sm"] { --d: 152px }
+.bubble-cluster[data-size="sm"] .bubble-name { font-size: 14px }
+.bubble {
+  position: relative; width: var(--d); height: var(--d); border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; padding: 18px; text-align: center;
+  background: var(--blue-050); border: 1px solid var(--blue-100);
+  box-shadow: 0 1px 2px rgba(11,43,92,.06), 0 6px 18px rgba(11,43,92,.07);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease)
+}
+/* stagger heights so rows read as a cluster, not a grid (sizes stay equal so text always fits) */
+.bubble:nth-child(3n+2) { margin-top: 28px }
+.bubble:nth-child(3n) { margin-bottom: 24px }
+#supporters .bubble, #spinoffs .bubble { background: #fff; border-color: #D5DEEC }
+.bubble:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 2px 4px rgba(11,43,92,.06), 0 14px 30px rgba(11,43,92,.13) }
+.bubble-link { display: flex; flex-direction: column; gap: 4px; color: var(--ink) }
+/* the whole circle is the homepage link; the contact link sits above it */
+.bubble-link::before { content: ""; position: absolute; inset: 0; border-radius: 50% }
+.bubble-name { font-size: 15px; font-weight: 600; line-height: 1.3 }
+.bubble-place { font-size: 12px; color: var(--text) }
+.bubble-contact {
+  position: relative; z-index: 1; font-size: 11.5px; line-height: 1.3; color: var(--blue);
+  text-decoration: underline; text-underline-offset: 2px
+}
+.bubble-contact:hover { color: var(--blue-700) }
+.bubble:hover .bubble-name { color: var(--blue) }
+
+@media (max-width: 640px) {
+  .partners-page { padding: 32px 0 64px }
+  .partners-intro { margin-bottom: 40px }
+  .bubble-cluster { --d: 148px; gap: 12px 14px }
+  .bubble-cluster[data-size="lg"] { --d: 156px }
+  .bubble-cluster[data-size="sm"] { --d: 140px }
+  .bubble { padding: 12px }
+  .bubble:nth-child(3n+2) { margin-top: 18px }
+  .bubble:nth-child(3n) { margin-bottom: 14px }
+  .bubble-name, .bubble-cluster[data-size="sm"] .bubble-name { font-size: 13.5px }
 }

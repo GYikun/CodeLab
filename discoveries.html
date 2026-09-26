@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Research Questions · CODELAB — Leiden University</title>
-<meta name="description" content="The questions driving CODELAB's research: how the brain processes smartphone use, how behaviour reveals ageing and disease, and what hidden rhythms shape daily life.">
+<title>Methods &amp; Discoveries · CODELAB — Leiden University</title>
+<meta name="description" content="How CODELAB studies real-world behaviour: smartphone touch dynamics, neural recording, and computational modelling — and what we've found so far.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,8 +23,8 @@
 
     <nav class="nav" id="primary-nav" aria-label="Primary">
         <a href="index.html" data-i18n="navHome">Home</a>
-        <a href="discoveries.html" data-i18n="navMethods">Discoveries</a>
-        <a href="questions.html" class="is-active" data-i18n="navQuestions">Questions</a>
+        <a href="discoveries.html" class="is-active" data-i18n="navMethods">Discoveries</a>
+        <a href="questions.html" data-i18n="navQuestions">Questions</a>
         <a href="partners.html" data-i18n="navPartners">Partners</a>
         <a href="team.html" data-i18n="navTeam">Team</a>
         <a href="resources.html" data-i18n="navResources">Resources</a>
@@ -47,11 +47,11 @@
 
 <main>
 
-<!-- QUESTIONS (Explanation) -->
-<section class="questions-section">
+<!-- DISCOVERIES -->
+<section class="discoveries-section">
   <div class="wrap">
-    <!-- Filled from data/questions.json -->
-    <div class="question-grid" id="questionGrid"></div>
+    <!-- Filled from data/discoveries.json -->
+    <div class="discovery-grid" id="discoveryGrid"></div>
   </div>
 </section>
 
@@ -70,37 +70,37 @@
 <script src="js/main.js"></script>
 <script src="js/data.js"></script>
 <script>
-/* Icon per question id. A new question without an entry here gets DEFAULT_ICON. */
-var QUESTION_ICONS = {
-  'brain-behaviour':    '<path d="M9 2v6L4 20h16L15 8V2"/><path d="M8.5 2h7"/><path d="M9 14h6"/>',
-  'patterns-over-time': '<path d="M3 12h4l3 8 4-16 3 8h4"/>',
-  'lifetime':           '<path d="M12 3v18M12 12l7-4M12 12l-7-4M12 17l6-3M12 17l-6-3"/>',
-  'brain-disorders':    '<path d="M4 20V10M9.3 20V5M14.7 20v-8M20 20V8"/>'
-};
-var DEFAULT_ICON = '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14"/><path d="M12 17h.01"/>';
+/* Shown when a paper has no image. */
+var DEFAULT_ICON = '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/>';
 
-CodeLabData.load(['questions']).then(function (data) {
+CodeLabData.load(['discoveries']).then(function (data) {
   var D = CodeLabData, dict = { en: {}, nl: {} };
-  var grid = document.getElementById('questionGrid');
+  var grid = document.getElementById('discoveryGrid');
 
-  if (!data.questions) {
+  if (!data.discoveries) {
     D.showError(grid);
   } else {
-    grid.innerHTML = data.questions.map(function (q, i) {
-      var key = 'q-' + q.id;
-      return '<div class="question-card reveal" id="' + D.esc(q.id) + '"' + (i ? ' data-delay="' + Math.min(i, 7) + '"' : '') + '>' +
-        '<div class="question-icon"><svg viewBox="0 0 24 24" aria-hidden="true">' + (QUESTION_ICONS[q.id] || DEFAULT_ICON) + '</svg></div>' +
-        '<h3 class="question-name" data-i18n="' + D.addText(dict, key + '-q', q.question) + '"></h3>' +
-        '<p class="question-desc" data-i18n="' + D.addText(dict, key + '-a', q.answer) + '"></p>' +
+    /* Newest year first; papers from the same year keep their file order. */
+    var papers = D.sortByTime(data.discoveries, function (p) { return String(p.year); }, 'desc');
+    grid.innerHTML = papers.map(function (p, i) {
+      var key = 'paper' + i;
+      var media = p.image
+        ? '<div class="discovery-media"><img src="' + D.esc(p.image) + '" alt="' + D.esc(D.text(p.title, 'en')) + '" loading="lazy"></div>'
+        : '<div class="discovery-icon"><svg viewBox="0 0 24 24" aria-hidden="true">' + DEFAULT_ICON + '</svg></div>';
+      var title = '<span data-i18n="' + D.addText(dict, key + 'Name', p.title) + '"></span>';
+      if (p.url) title = '<a class="discovery-link" href="' + D.esc(p.url) + '" target="_blank" rel="noopener">' + title + '</a>';
+      return '<div class="discovery-item' + (p.image ? ' has-image' : '') + ' reveal"' + (i ? ' data-delay="' + Math.min(i, 7) + '"' : '') + '>' +
+        media +
+        '<div>' +
+          '<p class="discovery-name">' + title + '</p>' +
+          '<p class="discovery-desc" data-i18n="' + D.addText(dict, key + 'Desc', p.summary) + '"></p>' +
+          '<span class="discovery-cite">' + D.esc(p.authors) + ' — ' + D.esc(p.journal) + ' (' + D.esc(p.year) + ')</span>' +
+        '</div>' +
       '</div>';
     }).join('');
   }
 
   initSite(dict);
-
-  /* Cards are built after load, so the browser could not jump to #id itself. */
-  var target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
-  if (target) target.scrollIntoView();
 });
 </script>
 </body>

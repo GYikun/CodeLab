@@ -22,16 +22,16 @@
     </a>
 
     <nav class="nav" id="primary-nav" aria-label="Primary">
-        <a href="index.html" data-i18n="navHome">Homepage</a>
-        <a href="methods.html" data-i18n="navMethods">Methods &amp; Discoveries</a>
-        <a href="questions.html" data-i18n="navQuestions">Research Questions</a>
-        <a href="index.html#partners" data-i18n="navPartners">Partners</a>
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="discoveries.html" data-i18n="navMethods">Discoveries</a>
+        <a href="questions.html" data-i18n="navQuestions">Questions</a>
+        <a href="partners.html" data-i18n="navPartners">Partners</a>
         <a href="team.html" data-i18n="navTeam">Team</a>
         <a href="resources.html" class="is-active" data-i18n="navResources">Resources</a>
       </nav>
 
     <div class="header-controls">
-      <a href="index.html#join" class="btn btn-primary btn-sm nav-cta" data-i18n="navJoin">Join a Study</a>
+      <a href="https://www.universiteitleiden.nl/en/staffmembers/arko-ghosh" class="btn btn-primary btn-sm nav-cta" data-i18n="navJoin">Join a Study</a>
 
       <div class="lang-switch" role="group" aria-label="Language">
         <button class="lang-btn is-active" data-lang="en" type="button">EN</button>
@@ -47,96 +47,54 @@
 
 <main>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
-  <div class="wrap">
-    <div class="breadcrumb reveal">
-      <a href="index.html" data-i18n="breadcrumbHome">Homepage</a>
-      <span>/</span>
-      <span data-i18n="navResources">Resources</span>
-    </div>
-    <h1 class="page-title reveal" data-delay="1" data-i18n="pageTitle">Resources</h1>
-    <p class="page-lede reveal" data-delay="2" data-i18n="pageLede">
-      We love sharing our published datasets and code. If you need more data or code
-      than what's available here, send us an email — and see where our discoveries
-      have already reached the clinic through our spin-off companies.
-    </p>
-    <div class="flow-thread reveal" data-delay="3">
-      <div class="flow-step"><span class="flow-dot"></span><span class="flow-label" data-i18n="flowQuestion">Question</span></div>
-      <div class="flow-step"><span class="flow-dot"></span><span class="flow-label" data-i18n="flowExplanation">Explanation</span></div>
-      <div class="flow-step"><span class="flow-dot"></span><span class="flow-label" data-i18n="flowEvidence">Evidence</span></div>
-      <div class="flow-step"><span class="flow-dot"></span><span class="flow-label" data-i18n="flowNext">Next step</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- RESOURCES (Evidence: real, linkable artifacts) -->
+<!-- RESOURCES: Publications → Patents → Data → Code
+     Cards are filled from data/team.json (Scholar/ORCID links) and data/resources.json -->
 <section class="resources-section">
   <div class="wrap">
-    <p class="section-label reveal" data-i18n="codeLabel">Code</p>
-    <h2 class="section-title reveal" data-delay="1" data-i18n="codeTitle">Open code and data</h2>
 
-    <div class="resource-grid" style="margin-top: 32px">
-      <a class="resource-card reveal" href="https://github.com/codelableidenvelux">
-        <span class="resource-type" data-i18n="typeCode">Code</span>
-        <p class="resource-name" data-i18n="res1Name">Ageing &amp; disease projects</p>
-        <p class="resource-desc" data-i18n="res1Desc">Open-source code for our smartphone-based ageing and neurological disease research.</p>
-        <span class="resource-link" data-i18n="viewGithub">View on GitHub <span class="arrow">→</span></span>
-      </a>
-
-      <a class="resource-card reveal" data-delay="1" href="https://github.com/CODELABLEIDEN">
-        <span class="resource-type" data-i18n="typeCode">Code</span>
-        <p class="resource-name" data-i18n="res2Name">All other CODELAB projects</p>
-        <p class="resource-desc" data-i18n="res2Desc">The rest of our published code, covering sleep, sensorimotor dynamics and more.</p>
-        <span class="resource-link" data-i18n="viewGithub">View on GitHub <span class="arrow">→</span></span>
-      </a>
-
-      <a class="resource-card reveal" data-delay="2" href="https://dataverse.nl/">
-        <span class="resource-type" data-i18n="typeData">Data</span>
-        <p class="resource-name" data-i18n="res3Name">Dataverse NL</p>
-        <p class="resource-desc" data-i18n="res3Desc">Where we share our published datasets. Email us if you need more data than what's public.</p>
-        <span class="resource-link" data-i18n="viewDataset">Browse datasets <span class="arrow">→</span></span>
-      </a>
+    <div class="res-block" id="publications">
+      <div class="res-head reveal">
+        <div class="res-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg></div>
+        <div>
+          <h2 class="res-title" data-i18n="pubsTitle">Publications</h2>
+          <p class="res-sub" data-i18n="pubsSub">Find our papers on our researchers’ academic profiles.</p>
+        </div>
+      </div>
+      <div class="resource-grid"></div>
     </div>
 
-    <p class="section-label reveal" data-delay="3" style="margin-top: 56px" data-i18n="spinoffLabel">Spin-offs</p>
-    <h2 class="section-title reveal" data-delay="4" data-i18n="spinoffTitle">From discovery to the clinic</h2>
-
-    <div class="resource-grid" style="margin-top: 32px">
-      <a class="resource-card reveal" href="https://axitetech.com/">
-        <span class="resource-type" data-i18n="typeSpinoff">Spin-off · 2024</span>
-        <p class="resource-name">AXITE BV</p>
-        <p class="resource-desc" data-i18n="res4Desc">A CODELAB spin-off translating smartphone-based brain health monitoring into a clinical product.</p>
-        <span class="resource-link" data-i18n="visitSite">Visit site <span class="arrow">→</span></span>
-      </a>
-
-      <a class="resource-card reveal" data-delay="1" href="https://www.quantactions.com/">
-        <span class="resource-type" data-i18n="typeSpinoff2">Spin-off · 2016</span>
-        <p class="resource-name">QuantActions AG</p>
-        <p class="resource-desc" data-i18n="res5Desc">Our earliest spin-off, building digital biomarkers for brain health from smartphone interaction data.</p>
-        <span class="resource-link" data-i18n="visitSite">Visit site <span class="arrow">→</span></span>
-      </a>
-
-      <a class="resource-card reveal" data-delay="2" href="https://www.universiteitleiden.nl/en/research/research-projects/social-and-behavioural-sciences/psychology/codelab">
-        <span class="resource-type" data-i18n="typePubs">Publications</span>
-        <p class="resource-name" data-i18n="res6Name">Full publication list</p>
-        <p class="resource-desc" data-i18n="res6Desc">Browse our peer-reviewed papers from 2006 to today, hosted on Leiden University's research pages.</p>
-        <span class="resource-link" data-i18n="viewPubs">See publications <span class="arrow">→</span></span>
-      </a>
+    <div class="res-block" id="patents">
+      <div class="res-head reveal">
+        <div class="res-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14.2 7.5 22l4.5-2.5 4.5 2.5-1.5-7.8"/><path d="m9.8 9 1.5 1.5 3-3"/></svg></div>
+        <div>
+          <h2 class="res-title" data-i18n="patentsTitle">Patents</h2>
+          <p class="res-sub" data-i18n="patentsSub">Inventions that have come out of our research.</p>
+        </div>
+      </div>
+      <div class="resource-grid"></div>
     </div>
-  </div>
-</section>
 
-<!-- JOIN (Next action) -->
-<section class="join" id="join">
-  <div class="wrap">
-    <a class="join-cta" href="index.html#join">
-      <h2 class="join-title" data-i18n="joinTitle">Take part in a study</h2>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-    <p class="join-lede" data-i18n="joinLede">
-      Contribute a few minutes a day from your phone and help us understand everyday life.
-    </p>
+    <div class="res-block" id="data">
+      <div class="res-head reveal">
+        <div class="res-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <div>
+          <h2 class="res-title" data-i18n="dataTitle">Data</h2>
+          <p class="res-sub" data-i18n="dataSub">Datasets we have made openly available.</p>
+        </div>
+      </div>
+      <div class="resource-grid"></div>
+    </div>
+
+    <div class="res-block" id="code">
+      <div class="res-head reveal">
+        <div class="res-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></svg></div>
+        <div>
+          <h2 class="res-title" data-i18n="codeTitle">Code</h2>
+          <p class="res-sub" data-i18n="codeSub">Open-source code from our projects.</p>
+        </div>
+      </div>
+      <div class="resource-grid"></div>
+    </div>
   </div>
 </section>
 
@@ -152,74 +110,104 @@
   </div>
 </footer>
 
-<button class="chat-fab" id="chatFab" aria-label="Ask CodeLab">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-6.5A8 8 0 1 1 21 12z"/>
-  </svg>
-  <span data-i18n="chatLabel">Ask CodeLab</span>
-</button>
-
 <script src="js/main.js"></script>
+<script src="js/data.js"></script>
 <script>
-initSite({
+var pageText = {
   en: {
-    pageTitle: "Resources",
-    pageLede: "We love sharing our published datasets and code. If you need more data or code than what's available here, send us an email — and see where our discoveries have already reached the clinic through our spin-off companies.",
-    codeLabel: "Code &amp; data",
-    codeTitle: "Open code and data",
-    typeCode: "Code",
-    typeData: "Data",
-    res1Name: "Ageing &amp; disease projects",
-    res1Desc: "Open-source code for our smartphone-based ageing and neurological disease research.",
-    res2Name: "All other CODELAB projects",
-    res2Desc: "The rest of our published code, covering sleep, sensorimotor dynamics and more.",
-    res3Name: "Dataverse NL",
-    res3Desc: "Where we share our published datasets. Email us if you need more data than what's public.",
-    viewGithub: 'View on GitHub <span class="arrow">→</span>',
-    viewDataset: 'Browse datasets <span class="arrow">→</span>',
-    spinoffLabel: "Spin-offs",
-    spinoffTitle: "From discovery to the clinic",
-    typeSpinoff: "Spin-off · 2024",
-    typeSpinoff2: "Spin-off · 2016",
-    res4Desc: "A CODELAB spin-off translating smartphone-based brain health monitoring into a clinical product.",
-    res5Desc: "Our earliest spin-off, building digital biomarkers for brain health from smartphone interaction data.",
-    visitSite: 'Visit site <span class="arrow">→</span>',
-    typePubs: "Publications",
-    res6Name: "Full publication list",
-    res6Desc: "Browse our peer-reviewed papers from 2006 to today, hosted on Leiden University's research pages.",
-    viewPubs: 'See publications <span class="arrow">→</span>',
-    joinTitle: "Take part in a study",
-    joinLede: "Contribute a few minutes a day from your phone and help us understand everyday life."
+    pubsTitle: "Publications",
+    pubsSub: "Find our papers on our researchers’ academic profiles.",
+    srcScholar: "Google Scholar",
+    scholarDesc: "Full list of papers and citations.",
+    srcOrcid: "ORCID",
+    orcidDesc: "Publications and other research output.",
+    viewProfile: "View profile <span class=\"arrow\">→</span>",
+    patentsTitle: "Patents",
+    patentsSub: "Inventions that have come out of our research.",
+    srcPatents: "Google Patents",
+    viewPatents: "View on Google Patents <span class=\"arrow\">→</span>",
+    dataTitle: "Data",
+    dataSub: "Datasets we have made openly available.",
+    srcDataverse: "Data repository",
+    viewDataset: "Browse datasets <span class=\"arrow\">→</span>",
+    codeTitle: "Code",
+    codeSub: "Open-source code from our projects.",
+    srcGithub: "GitHub",
+    viewGithub: "View on GitHub <span class=\"arrow\">→</span>"
   },
   nl: {
-    pageTitle: "Bronnen",
-    pageLede: "We delen graag onze gepubliceerde datasets en code. Heb je meer data of code nodig dan hier beschikbaar is, stuur ons dan een e-mail — en bekijk waar onze ontdekkingen via onze spin-offbedrijven al de kliniek hebben bereikt.",
-    codeLabel: "Code &amp; data",
-    codeTitle: "Open code en data",
-    typeCode: "Code",
-    typeData: "Data",
-    res1Name: "Projecten over veroudering &amp; ziekte",
-    res1Desc: "Opensourcecode voor ons onderzoek naar veroudering en neurologische aandoeningen op basis van smartphonedata.",
-    res2Name: "Alle overige CODELAB-projecten",
-    res2Desc: "De rest van onze gepubliceerde code, over slaap, sensomotorische dynamiek en meer.",
-    res3Name: "Dataverse NL",
-    res3Desc: "Waar we onze gepubliceerde datasets delen. Mail ons als je meer data nodig hebt dan hier openbaar is.",
-    viewGithub: 'Bekijk op GitHub <span class="arrow">→</span>',
-    viewDataset: 'Bekijk datasets <span class="arrow">→</span>',
-    spinoffLabel: "Spin-offs",
-    spinoffTitle: "Van ontdekking naar de kliniek",
-    typeSpinoff: "Spin-off · 2024",
-    typeSpinoff2: "Spin-off · 2016",
-    res4Desc: "Een CODELAB-spin-off die smartphonegebaseerde monitoring van hersengezondheid vertaalt naar een klinisch product.",
-    res5Desc: "Onze eerste spin-off, die digitale biomarkers voor hersengezondheid bouwt op basis van smartphone-interactiedata.",
-    visitSite: 'Bezoek website <span class="arrow">→</span>',
-    typePubs: "Publicaties",
-    res6Name: "Volledige publicatielijst",
-    res6Desc: "Bekijk onze peer-reviewed publicaties van 2006 tot nu, gehost op de onderzoekspagina's van de Universiteit Leiden.",
-    viewPubs: 'Bekijk publicaties <span class="arrow">→</span>',
-    joinTitle: "Doe mee aan een onderzoek",
-    joinLede: "Draag een paar minuten per dag bij via je telefoon en help ons het dagelijks leven beter begrijpen."
+    pubsTitle: "Publicaties",
+    pubsSub: "Vind onze artikelen op de academische profielen van onze onderzoekers.",
+    srcScholar: "Google Scholar",
+    scholarDesc: "Volledige lijst van artikelen en citaties.",
+    srcOrcid: "ORCID",
+    orcidDesc: "Publicaties en andere onderzoeksoutput.",
+    viewProfile: "Bekijk profiel <span class=\"arrow\">→</span>",
+    patentsTitle: "Octrooien",
+    patentsSub: "Uitvindingen die uit ons onderzoek zijn voortgekomen.",
+    srcPatents: "Google Patents",
+    viewPatents: "Bekijk op Google Patents <span class=\"arrow\">→</span>",
+    dataTitle: "Data",
+    dataSub: "Datasets die we openbaar beschikbaar hebben gemaakt.",
+    srcDataverse: "Datarepository",
+    viewDataset: "Bekijk datasets <span class=\"arrow\">→</span>",
+    codeTitle: "Code",
+    codeSub: "Opensourcecode uit onze projecten.",
+    srcGithub: "GitHub",
+    viewGithub: "Bekijk op GitHub <span class=\"arrow\">→</span>"
   }
+};
+
+/* resources.json "type" -> page section, card label and button text (all in pageText) */
+var RESOURCE_TYPES = {
+  patent: { block: 'patents', label: 'srcPatents',   button: 'viewPatents' },
+  data:   { block: 'data',    label: 'srcDataverse', button: 'viewDataset' },
+  code:   { block: 'code',    label: 'srcGithub',    button: 'viewGithub' }
+};
+
+CodeLabData.load(['team', 'resources']).then(function (data) {
+  var D = CodeLabData;
+  function grid(block) { return document.querySelector('#' + block + ' .resource-grid'); }
+  function card(url, labelKey, nameHtml, descHtml, buttonKey, i) {
+    return '<a class="resource-card reveal"' + (i ? ' data-delay="' + Math.min(i, 7) + '"' : '') +
+      ' href="' + D.esc(url) + '" target="_blank" rel="noopener">' +
+      '<span class="resource-type" data-i18n="' + labelKey + '"></span>' +
+      '<p class="resource-name"' + nameHtml + '</p>' +
+      '<p class="resource-desc"' + descHtml + '</p>' +
+      '<span class="resource-link" data-i18n="' + buttonKey + '"></span></a>';
+  }
+  /* Fill a section; a section with nothing to show is removed (no empty heading or divider). */
+  function fill(block, cards) {
+    if (cards.length) grid(block).innerHTML = cards.join('');
+    else document.getElementById(block).remove();
+  }
+
+  /* Publications: every team member's Google Scholar / ORCID link */
+  if (!data.team) {
+    D.showError(grid('publications'));
+  } else {
+    var pubs = [];
+    data.team.forEach(function (m) {
+      var name = '>' + D.esc(m.name);
+      if (m.scholar) pubs.push(card(m.scholar, 'srcScholar', name, ' data-i18n="scholarDesc">', 'viewProfile', pubs.length));
+      if (m.orcid) pubs.push(card(m.orcid, 'srcOrcid', name, ' data-i18n="orcidDesc">', 'viewProfile', pubs.length));
+    });
+    fill('publications', pubs);
+  }
+
+  /* Patents, data, code */
+  Object.keys(RESOURCE_TYPES).forEach(function (type) {
+    var t = RESOURCE_TYPES[type];
+    if (!data.resources) { D.showError(grid(t.block)); return; }
+    fill(t.block, data.resources.filter(function (r) { return r.type === type; }).map(function (r, i) {
+      var key = type + i;
+      return card(r.url, t.label,
+        ' data-i18n="' + D.addText(pageText, key + 'Name', r.name) + '">',
+        ' data-i18n="' + D.addText(pageText, key + 'Desc', r.summary) + '">', t.button, i);
+    }));
+  });
+
+  initSite(pageText);
 });
 </script>
 </body>
