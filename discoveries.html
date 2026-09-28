@@ -52,6 +52,8 @@
   <div class="wrap">
     <!-- Filled from data/discoveries.json -->
     <div class="discovery-grid" id="discoveryGrid"></div>
+    <!-- Filled from data/video.json; stays hidden while no video is set -->
+    <div class="discovery-video reveal" id="discoveryVideo" hidden></div>
   </div>
 </section>
 
@@ -73,9 +75,23 @@
 /* Shown when a paper has no image. */
 var DEFAULT_ICON = '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/>';
 
-CodeLabData.load(['discoveries']).then(function (data) {
+CodeLabData.load(['discoveries', 'video']).then(function (data) {
   var D = CodeLabData, dict = { en: {}, nl: {} };
   var grid = document.getElementById('discoveryGrid');
+  var videoBox = document.getElementById('discoveryVideo');
+
+  /* Video if set; otherwise the cover image alone as a placeholder; otherwise hidden. */
+  var v = data.video || {};
+  if (v.src) {
+    videoBox.innerHTML = '<video controls playsinline preload="metadata"' +
+      (v.poster ? ' poster="' + D.esc(v.poster) + '"' : '') + '>' +
+      '<source src="' + D.esc(v.src) + '">' +
+    '</video>';
+    videoBox.hidden = false;
+  } else if (v.poster) {
+    videoBox.innerHTML = '<img src="' + D.esc(v.poster) + '" alt="">';
+    videoBox.hidden = false;
+  }
 
   if (!data.discoveries) {
     D.showError(grid);

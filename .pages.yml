@@ -12,6 +12,11 @@ media:
     input: assets/mem
     output: assets/mem
     extensions: [jpg, jpeg, png, webp]
+  - name: vid
+    label: Videos
+    input: assets/video
+    output: assets/video
+    extensions: [mp4, webm]
 
 # Bilingual text, stored as { "en": "...", "nl": "..." }.
 # English is required; the site falls back to English when Dutch is empty.
@@ -167,6 +172,25 @@ content:
         pattern:
           regex: "^(https://\\S+)?$"
           message: "Must be a full link starting with https://"
+
+  - name: video
+    label: Video (Discoveries)
+    type: file
+    path: data/video.json
+    format: json
+    fields:
+      - name: src
+        label: Video file
+        type: file
+        description: "MP4 (H.264) plays in every browser. Keep it small (under about 50 MB; GitHub rejects files over 100 MB). Leave empty to hide the video."
+        options:
+          media: vid
+      - name: poster
+        label: Cover image (optional)
+        type: image
+        description: "Shown before the video plays. Empty = the video's first frame. With no video file, this image is shown on its own as a placeholder."
+        options:
+          media: pub
 
   - name: partners
     label: Partners

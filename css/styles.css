@@ -248,6 +248,15 @@ a:hover .arrow, button:hover .arrow { transform: translateX(4px) }
 .discovery-media img { display: block; width: 100%; height: auto }
 .discovery-desc { font-size: 14px; color: var(--text); line-height: 1.55 }
 .discovery-cite { display: block; font-size: 15px; color: var(--text); margin-top: 8px; opacity: .75 }
+/* Optional video below the list (data/video.json) */
+.discovery-video {
+  margin-top: 40px; border: 1px solid #D5DEEC; border-radius: var(--radius);
+  overflow: hidden; background: var(--bg-soft);
+  box-shadow: 0 1px 2px rgba(11,43,92,.06), 0 4px 14px rgba(11,43,92,.06)
+}
+.discovery-video video,
+.discovery-video img { display: block; width: 100%; height: auto; max-height: 80vh; object-fit: contain }
+.discovery-video video { background: var(--ink) }
 
 /* ---- Question cards (Research Questions page) ---- */
 .questions-section { padding: 32px 0 72px }
