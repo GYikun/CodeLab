@@ -24,7 +24,7 @@
     <nav class="nav" id="primary-nav" aria-label="Primary">
         <a href="index.html" data-i18n="navHome">Home</a>
         <a href="discoveries.html" class="is-active" data-i18n="navMethods">Discoveries</a>
-        <a href="questions.html" data-i18n="navQuestions">Questions</a>
+        <a href="research.html" data-i18n="navQuestions">Research</a>
         <a href="partners.html" data-i18n="navPartners">Partners</a>
         <a href="team.html" data-i18n="navTeam">Team</a>
         <a href="resources.html" data-i18n="navResources">Resources</a>
@@ -47,11 +47,19 @@
 
 <main>
 
-<!-- DISCOVERIES -->
-<section class="discoveries-section">
+<!-- INTRO -->
+<section class="disc-intro">
   <div class="wrap">
-    <!-- Filled from data/discoveries.json -->
-    <div class="discovery-grid" id="discoveryGrid"></div>
+    <p class="disc-eyebrow reveal" data-i18n="discEyebrow">Discoveries</p>
+    <h1 class="disc-title reveal" data-delay="1"><span data-i18n="discTitle">A new perspective on</span> <em data-i18n="discHighlight">brain and behaviour</em></h1>
+    <p class="disc-lede reveal" data-delay="2" data-i18n="discLede">Our discoveries inform on brain and behavioural functions as they unfold in everyday life. Each one brings us closer to understanding, monitoring and protecting brain functions in the real world.</p>
+  </div>
+</section>
+
+<!-- DISCOVERIES (filled from data/discoveries.json; artwork from js/discovery-art.js) -->
+<section class="disc-list-section">
+  <div class="wrap">
+    <div class="disc-gallery" id="discoveryGrid"></div>
     <!-- Filled from data/video.json; stays hidden while no video is set -->
     <div class="discovery-video reveal" id="discoveryVideo" hidden></div>
   </div>
@@ -71,14 +79,35 @@
 
 <script src="js/main.js"></script>
 <script src="js/data.js"></script>
+<script src="js/discovery-art.js"></script>
 <script>
-/* Shown when a paper has no image. */
-var DEFAULT_ICON = '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/>';
+var pageText = {
+  en: {
+    discEyebrow: "Discoveries",
+    discTitle: "A new perspective on", discHighlight: "brain and behaviour",
+    discLede: "Our discoveries inform on brain and behavioural functions as they unfold in everyday life. Each one brings us closer to understanding, monitoring and protecting brain functions in the real world.",
+    discRead: 'Read more <span class="arrow" aria-hidden="true">&rarr;</span>'
+  },
+  nl: {
+    discEyebrow: "Bevindingen",
+    discTitle: "Een nieuw perspectief op", discHighlight: "brein en gedrag",
+    discLede: "Onze bevindingen geven inzicht in de functies van brein en gedrag zoals die zich in het dagelijks leven ontvouwen. Elke bevinding brengt ons dichter bij het begrijpen, volgen en beschermen van hersenfuncties in de echte wereld.",
+    discRead: 'Lees meer <span class="arrow" aria-hidden="true">&rarr;</span>'
+  }
+};
 
-CodeLabData.load(['discoveries', 'video']).then(function (data) {
-  var D = CodeLabData, dict = { en: {}, nl: {} };
+CodeLabData.load(['discoveries', 'discoveries-page', 'video']).then(function (data) {
+  var D = CodeLabData, dict = pageText;
   var grid = document.getElementById('discoveryGrid');
   var videoBox = document.getElementById('discoveryVideo');
+
+  /* Intro (data/discoveries-page.json); the HTML above is the fallback. */
+  var intro = data['discoveries-page'];
+  if (intro) {
+    if (intro.title) D.addText(dict, 'discTitle', intro.title);
+    if (intro.highlight) D.addText(dict, 'discHighlight', intro.highlight);
+    if (intro.intro) D.addText(dict, 'discLede', intro.intro);
+  }
 
   /* Video if set; otherwise the cover image alone as a placeholder; otherwise hidden. */
   var v = data.video || {};
@@ -99,20 +128,22 @@ CodeLabData.load(['discoveries', 'video']).then(function (data) {
     /* Newest year first; papers from the same year keep their file order. */
     var papers = D.sortByTime(data.discoveries, function (p) { return String(p.year); }, 'desc');
     grid.innerHTML = papers.map(function (p, i) {
-      var key = 'paper' + i;
-      var media = p.image
-        ? '<div class="discovery-media"><img src="' + D.esc(p.image) + '" alt="' + D.esc(D.text(p.title, 'en')) + '" loading="lazy"></div>'
-        : '<div class="discovery-icon"><svg viewBox="0 0 24 24" aria-hidden="true">' + DEFAULT_ICON + '</svg></div>';
-      var title = '<span data-i18n="' + D.addText(dict, key + 'Name', p.title) + '"></span>';
-      if (p.url) title = '<a class="discovery-link" href="' + D.esc(p.url) + '" target="_blank" rel="noopener">' + title + '</a>';
-      return '<div class="discovery-item' + (p.image ? ' has-image' : '') + ' reveal"' + (i ? ' data-delay="' + Math.min(i, 7) + '"' : '') + '>' +
-        media +
-        '<div>' +
-          '<p class="discovery-name">' + title + '</p>' +
-          '<p class="discovery-desc" data-i18n="' + D.addText(dict, key + 'Desc', p.summary) + '"></p>' +
-          '<span class="discovery-cite">' + D.esc(p.authors) + ' — ' + D.esc(p.journal) + ' (' + D.esc(p.year) + ')</span>' +
-        '</div>' +
-      '</div>';
+      var key = 'paper' + i, titleEn = D.text(p.title, 'en');
+      /* An uploaded image or GIF replaces the drawn artwork. */
+      var art = p.image
+        ? '<img src="' + D.esc(p.image) + '" alt="' + D.esc(titleEn) + '" loading="lazy">'
+        : DiscoveryArt.render(p.art, titleEn, titleEn);
+      var inner =
+        '<figure class="disc-art">' + art + '</figure>' +
+        '<div class="disc-body">' +
+          '<h2 class="disc-name" data-i18n="' + D.addText(dict, key + 'Name', p.title) + '"></h2>' +
+          '<p class="disc-summary" data-i18n="' + D.addText(dict, key + 'Desc', p.summary) + '"></p>' +
+          (p.url ? '<span class="disc-read" data-i18n="discRead"></span>' : '') +
+        '</div>';
+      var delay = ' data-delay="' + (i % 3) + '"';
+      return p.url
+        ? '<a class="disc-card reveal" href="' + D.esc(p.url) + '" target="_blank" rel="noopener"' + delay + '>' + inner + '</a>'
+        : '<article class="disc-card reveal"' + delay + '>' + inner + '</article>';
     }).join('');
   }
 

@@ -104,7 +104,8 @@
           "nl": "Een tweede spin-off, ditmaal specifiek gericht op klinische monitoring van hersengezondheid in plaats van algemene biomarkers."
         }
       }
-    ]
+    ],
+    "tag": "Principal Investigator"
   },
   {
     "id": "guido-band",
@@ -166,7 +167,8 @@
           "nl": ""
         }
       }
-    ]
+    ],
+    "tag": "Researcher"
   },
   {
     "id": "khrystyna-semkiv",
@@ -258,7 +260,8 @@
           "nl": ""
         }
       }
-    ]
+    ],
+    "tag": "Researcher"
   },
   {
     "id": "wenyu-wan",
@@ -320,7 +323,8 @@
           "nl": ""
         }
       }
-    ]
+    ],
+    "tag": "Visiting Researcher"
   },
   {
     "id": "ruchella-kock",
@@ -382,7 +386,8 @@
           "nl": ""
         }
       }
-    ]
+    ],
+    "tag": "Visiting Researcher"
   },
   {
     "id": "fleur-van-der-laan",
@@ -444,7 +449,8 @@
           "nl": ""
         }
       }
-    ]
+    ],
+    "tag": "Researcher"
   },
   {
     "id": "sezin-mumcu",
@@ -491,7 +497,8 @@
           "nl": "Plaatsaanduiding — vervang door een korte beschrijving van het combineren van wearables met touchscreenactiviteit."
         }
       }
-    ]
+    ],
+    "tag": "Researcher"
   },
   {
     "id": "david-hof",
@@ -553,7 +560,8 @@
           "nl": ""
         }
       }
-    ]
+    ],
+    "tag": "MSc Student"
   },
   {
     "id": "oyku-gurcan",
@@ -615,7 +623,8 @@
           "nl": ""
         }
       }
-    ]
+    ],
+    "tag": "MSc Student"
   },
   {
     "id": "alumnus-sample-01",
@@ -677,6 +686,10 @@
           "nl": ""
         }
       }
+    ],
+    "tag": [
+      "Alumni",
+      "Researcher"
     ]
   },
   {
@@ -739,6 +752,10 @@
           "nl": ""
         }
       }
+    ],
+    "tag": [
+      "Alumni",
+      "Researcher"
     ]
   }
 ]

@@ -83,6 +83,7 @@
         })
       };
 
+      m.tags = Array.isArray(p.tag) ? p.tag : (p.tag ? [p.tag] : []);
       if (p.status === 'alumni') groups.alumni.push(m);
       else if (/MSc/.test(D.text(p.role, 'en'))) groups.students.push(m);
       else groups.staff.push(m);
@@ -277,6 +278,7 @@
   function buildMember(m, isAlumni) {
     var card = el('article', 'tmember reveal' + (isAlumni ? ' is-alumni' : ''));
     card.setAttribute('data-id', m.id);
+    card.setAttribute('data-tags', m.tags.join(','));
 
     /* ---- head: photo, name, (alumni role), replay, research link ---- */
     var head = el('div', 'tmember-head', card);
@@ -297,7 +299,11 @@
     /* Roles are not shown for current members. Alumni keep theirs, since
        it is the only per-card marker that the project has finished. */
     if (isAlumni) {
-      el('p', 'tmember-role', idBox).setAttribute('data-i18n', m.roleKey);
+      var badgeRow = el('p', 'tmember-role', idBox);
+      (m.tags.length ? m.tags : ['Alumni']).forEach(function (t, ti) {
+        if (ti > 0) badgeRow.appendChild(document.createTextNode(' · '));
+        el('span', 'tmember-tag', badgeRow).textContent = t;
+      });
     }
 
     var actions = el('div', 'tmember-actions', head);
@@ -444,7 +450,7 @@
     var w = t.stage.clientWidth;
     if (!w) return; /* hidden (collapsed alumni panel) - retry on open */
 
-    var mode = portraitMQ.matches ? 'v' : 'h';
+    var mode = (w < 700) ? 'v' : 'h';
     var labelW;
 
     if (mode === 'h') {
@@ -649,6 +655,61 @@
           });
         }
       });
+    }
+
+    /* ---- role filter chips ---- */
+    var TAG_ORDER = ['All', 'Principal Investigator', 'Researcher',
+      'Visiting Researcher', 'MSc Student', 'Pre-University', 'Alumni'];
+
+    function applyTeamFilter(tag) {
+      if (tag === 'Alumni') {
+        live.forEach(function (c) { c.classList.add('is-filtered'); });
+        alumniCards.forEach(function (c) { c.classList.remove('is-filtered'); });
+        if (panel && panel.hidden) {
+          if (toggle) toggle.setAttribute('aria-expanded', 'true');
+          panel.hidden = false;
+          if (label) {
+            label.setAttribute('data-i18n', 'alumniClose');
+            var lang = document.documentElement.lang === 'nl' ? 'nl' : 'en';
+            label.innerHTML = dict[lang]['alumniClose'];
+          }
+          requestAnimationFrame(function () {
+            alumniCards.forEach(function (c) {
+              c.classList.add('is-in'); layout(c); play(c, true);
+            });
+          });
+        }
+      } else if (tag === 'All') {
+        live.forEach(function (c) { c.classList.remove('is-filtered'); });
+        alumniCards.forEach(function (c) { c.classList.remove('is-filtered'); });
+      } else {
+        live.forEach(function (c) {
+          var tags = (c.getAttribute('data-tags') || '').split(',');
+          c.classList.toggle('is-filtered', tags.indexOf(tag) === -1);
+        });
+        alumniCards.forEach(function (c) { c.classList.add('is-filtered'); });
+      }
+    }
+
+    var filterWrap = el('div', 'team-filters');
+    filterWrap.setAttribute('role', 'group');
+    filterWrap.setAttribute('aria-label', 'Filter by role');
+    TAG_ORDER.forEach(function (tag) {
+      var btn = el('button',
+        'team-filter-btn' + (tag === 'All' ? ' is-active' : ''),
+        filterWrap);
+      btn.type = 'button';
+      btn.textContent = tag;
+      btn.addEventListener('click', function () {
+        filterWrap.querySelectorAll('.team-filter-btn')
+          .forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        applyTeamFilter(tag);
+      });
+    });
+    var staffList = document.getElementById('staffList');
+    if (staffList && staffList.parentNode) {
+      staffList.parentNode.insertBefore(filterWrap, staffList);
     }
 
     /* re-layout on resize and on device rotation */

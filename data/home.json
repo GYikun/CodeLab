@@ -1,6 +1,18 @@
 {
+  "prelude": {
+    "en": "In 1633 Leiden University opened an observatory to study the stars. The work done there helped change how we understand the universe.",
+    "nl": "In 1633 opende de Universiteit Leiden een sterrenwacht om de sterren te bestuderen. Het werk dat daar gebeurde, veranderde mede hoe we het heelal begrijpen."
+  },
+  "title": {
+    "en": "Now, an observatory for",
+    "nl": "Nu, een observatorium voor"
+  },
+  "highlight": {
+    "en": "human behaviour",
+    "nl": "menselijk gedrag"
+  },
   "intro": {
-    "en": "We study the neural and behavioural signals behind everyday smartphone use. We build a new generation of brain science focused on how people really think, feel and act, not just how they perform in a lab.",
-    "nl": "We onderzoeken de neurale en gedragsmatige signalen achter alledaags smartphonegebruik, en bouwen zo aan een nieuwe generatie hersenwetenschap die laat zien hoe mensen echt denken, voelen en handelen, niet alleen hoe ze presteren in een lab."
+    "en": "We observe people in everyday life through the touches on their phones. From these traces we are building a new understanding of behaviour, one that fuels curiosity and helps improve lives.",
+    "nl": "We observeren mensen in het dagelijks leven via de aanrakingen op hun telefoon. Uit die sporen bouwen we een nieuw begrip van gedrag, dat nieuwsgierigheid voedt en levens helpt verbeteren."
   }
 }
